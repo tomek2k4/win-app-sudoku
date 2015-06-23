@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+
+
+using System.Windows;
+using System.Windows.Input;
+
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -15,6 +20,7 @@ using Windows.UI.Xaml.Navigation;
 
 
 using Sudoku.ViewModel;
+using Windows.UI.Core;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -50,13 +56,22 @@ namespace Sudoku
             set
             {
                 _viewModel = value;                             // Save a pointer to the ViewModel class
-                this.DataContext = value;                       // Set the datacontext of the WPF form to the view model.
+                this.DataContext = value;                       // Set the datacontext of the form to the view model.
             }
         }
 
         #endregion
 
+        #region . Cell Content Event Handlers .
 
+        private void A0_PointerPressed(object sender,PointerEventArgs e)
+        {
+            //if (ViewModel != null)
+            //    ViewModel.CellClicked(0, 0);
+        }
+
+ 
+        #endregion
 
     }
 
