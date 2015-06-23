@@ -19,6 +19,19 @@
                 <Setter Property="HorizontalAlignment" Value="Stretch"/>
                 <Setter Property="VerticalAlignment" Value="Stretch"/>
                 <Setter Property="FontSize" Value="12"/>
+                <Setter Property="Foreground" Value="Black"/>
+
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border Name="border" 
+                            Background="{TemplateBinding Background}">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+
             </Style>
                  
             <view_model:PoleToStringConverter x:Key="P2S"/>
@@ -30,6 +43,56 @@
                 <Setter Property="Margin" Value="10,10,0,0" />
                 <Setter Property="Height" Value="402" />
                 <Setter Property="Width" Value="402" />
+            </Style>
+
+
+            <Style x:Key="BorderStyle"
+               TargetType="Border">
+                <Setter Property="BorderBrush" Value="Gray" />
+                <Setter Property="HorizontalAlignment" Value="Left" />
+                <Setter Property="VerticalAlignment" Value="Top" />
+            </Style>
+
+            <Style x:Key="MiniBorderStyle"
+               TargetType="Border"
+               BasedOn="{StaticResource BorderStyle}">
+                <Setter Property="BorderThickness" Value="2" />
+                <Setter Property="Grid.ColumnSpan" Value="3" />
+                <Setter Property="Grid.RowSpan" Value="3" />
+                <Setter Property="Height" Value="134" />
+                <Setter Property="Width" Value="134" />
+                <Setter Property="Background" Value="White"/>
+            </Style>
+
+            <Style x:Key="MiniBorderBlueStyle"
+               TargetType="Border"
+               BasedOn="{StaticResource MiniBorderStyle}">
+                <Setter Property="Background" Value="AliceBlue" />
+            </Style>
+
+
+            <Style x:Key="BarBaseStyle"
+               TargetType="Rectangle">
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="VerticalAlignment" Value="Top" />
+                <Setter Property="Margin" Value="0,0,0,0" />
+                <Setter Property="Stroke" Value="Gray" />
+            </Style>
+
+            <Style x:Key="HorizontalBars"
+               TargetType="Rectangle"
+               BasedOn="{StaticResource BarBaseStyle}">
+                <Setter Property="Grid.ColumnSpan" Value="3"/>
+                <Setter Property="Height" Value="1"/>
+                <Setter Property="Width" Value="134" />
+            </Style>
+
+            <Style x:Key="VerticalBars"
+               TargetType="Rectangle"
+               BasedOn="{StaticResource BarBaseStyle}">
+                <Setter Property="Grid.RowSpan" Value="3"/>
+                <Setter Property="Height" Value="134"/>
+                <Setter Property="Width" Value="1" />
             </Style>
 
         </ResourceDictionary>
@@ -64,8 +127,14 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
+            <Border Style="{StaticResource MiniBorderBlueStyle}" />
+            <Rectangle Style="{StaticResource HorizontalBars}" Grid.Row="1"/>
+            <Rectangle Style="{StaticResource HorizontalBars}" Grid.Row="2"/>
+            <Rectangle Style="{StaticResource VerticalBars}" Grid.Column="1"/>
+            <Rectangle Style="{StaticResource VerticalBars}" Grid.Column="2"/>
+            
 
-            <ContentControl Grid.Column="0" Grid.Row="0" />
+            <Button Grid.Column="0" Grid.Row="0" />
             <ContentControl Grid.Column="1" Grid.Row="0" />
             <ContentControl Grid.Column="2" Grid.Row="0" />
 
@@ -91,6 +160,12 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
+
+            <Border Style="{StaticResource MiniBorderStyle}" />
+            <Rectangle Style="{StaticResource HorizontalBars}" Grid.Row="1"/>
+            <Rectangle Style="{StaticResource HorizontalBars}" Grid.Row="2"/>
+            <Rectangle Style="{StaticResource VerticalBars}" Grid.Column="1"/>
+            <Rectangle Style="{StaticResource VerticalBars}" Grid.Column="2"/>
 
             <Button  Grid.Column="0" Grid.Row="0" Content="{Binding Path=Plansza[0][0],Converter={StaticResource P2S}}" Command="{Binding Path=Komendy[0][0]}" />
             <Button  Grid.Column="1" Grid.Row="0" Content="{Binding Path=Plansza[0][1],Converter={StaticResource P2S}}" Command="{Binding Path=Komendy[0][1]}" />
@@ -120,6 +195,13 @@
             </Grid.RowDefinitions>
 
 
+            <Border Style="{StaticResource MiniBorderBlueStyle}" />
+            <Rectangle Style="{StaticResource HorizontalBars}" Grid.Row="1"/>
+            <Rectangle Style="{StaticResource HorizontalBars}" Grid.Row="2"/>
+            <Rectangle Style="{StaticResource VerticalBars}" Grid.Column="1"/>
+            <Rectangle Style="{StaticResource VerticalBars}" Grid.Column="2"/>
+
+
             <ContentControl Content="{Binding Path=Cell60, Mode=OneWay}"   Grid.Column="0" Grid.Row="0"   />
             <ContentControl Content="{Binding Path=Cell70, Mode=OneWay}"   Grid.Column="1" Grid.Row="0"   />
             <ContentControl Content="{Binding Path=Cell80, Mode=OneWay}"   Grid.Column="2" Grid.Row="0"   />
@@ -147,7 +229,11 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-
+            <Border Style="{StaticResource MiniBorderStyle}" />
+            <Rectangle Style="{StaticResource HorizontalBars}" Grid.Row="1"/>
+            <Rectangle Style="{StaticResource HorizontalBars}" Grid.Row="2"/>
+            <Rectangle Style="{StaticResource VerticalBars}" Grid.Column="1"/>
+            <Rectangle Style="{StaticResource VerticalBars}" Grid.Column="2"/>
 
             <ContentControl Content="{Binding Path=Cell03, Mode=OneWay}"   Grid.Column="0" Grid.Row="0"   />
             <ContentControl Content="{Binding Path=Cell13, Mode=OneWay}"   Grid.Column="1" Grid.Row="0"   />
@@ -176,7 +262,11 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-
+            <Border Style="{StaticResource MiniBorderBlueStyle}" />
+            <Rectangle Style="{StaticResource HorizontalBars}" Grid.Row="1"/>
+            <Rectangle Style="{StaticResource HorizontalBars}" Grid.Row="2"/>
+            <Rectangle Style="{StaticResource VerticalBars}" Grid.Column="1"/>
+            <Rectangle Style="{StaticResource VerticalBars}" Grid.Column="2"/>
 
             <ContentControl Content="{Binding Path=Cell33, Mode=OneWay}"   Grid.Column="0" Grid.Row="0"   />
             <ContentControl Content="{Binding Path=Cell43, Mode=OneWay}"   Grid.Column="1" Grid.Row="0"   />
@@ -205,7 +295,11 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-
+            <Border Style="{StaticResource MiniBorderStyle}" />
+            <Rectangle Style="{StaticResource HorizontalBars}" Grid.Row="1"/>
+            <Rectangle Style="{StaticResource HorizontalBars}" Grid.Row="2"/>
+            <Rectangle Style="{StaticResource VerticalBars}" Grid.Column="1"/>
+            <Rectangle Style="{StaticResource VerticalBars}" Grid.Column="2"/>
 
             <ContentControl Content="{Binding Path=Cell63, Mode=OneWay}"   Grid.Column="0" Grid.Row="0"   />
             <ContentControl Content="{Binding Path=Cell73, Mode=OneWay}"   Grid.Column="1" Grid.Row="0"   />
@@ -234,7 +328,11 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-
+            <Border Style="{StaticResource MiniBorderBlueStyle}" />
+            <Rectangle Style="{StaticResource HorizontalBars}" Grid.Row="1"/>
+            <Rectangle Style="{StaticResource HorizontalBars}" Grid.Row="2"/>
+            <Rectangle Style="{StaticResource VerticalBars}" Grid.Column="1"/>
+            <Rectangle Style="{StaticResource VerticalBars}" Grid.Column="2"/>
 
             <ContentControl Content="{Binding Path=Cell06, Mode=OneWay}"   Grid.Column="0" Grid.Row="0"   />
             <ContentControl Content="{Binding Path=Cell16, Mode=OneWay}"   Grid.Column="1" Grid.Row="0"   />
@@ -263,6 +361,11 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
+            <Border Style="{StaticResource MiniBorderStyle}" />
+            <Rectangle Style="{StaticResource HorizontalBars}" Grid.Row="1"/>
+            <Rectangle Style="{StaticResource HorizontalBars}" Grid.Row="2"/>
+            <Rectangle Style="{StaticResource VerticalBars}" Grid.Column="1"/>
+            <Rectangle Style="{StaticResource VerticalBars}" Grid.Column="2"/>
 
             <ContentControl Content="{Binding Path=Cell36, Mode=OneWay}"   Grid.Column="0" Grid.Row="0"   />
             <ContentControl Content="{Binding Path=Cell46, Mode=OneWay}"   Grid.Column="1" Grid.Row="0"   />
@@ -291,6 +394,11 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
+            <Border Style="{StaticResource MiniBorderBlueStyle}" />
+            <Rectangle Style="{StaticResource HorizontalBars}" Grid.Row="1"/>
+            <Rectangle Style="{StaticResource HorizontalBars}" Grid.Row="2"/>
+            <Rectangle Style="{StaticResource VerticalBars}" Grid.Column="1"/>
+            <Rectangle Style="{StaticResource VerticalBars}" Grid.Column="2"/>
 
             <ContentControl Content="{Binding Path=Cell66, Mode=OneWay}"   Grid.Column="0" Grid.Row="0"   />
             <ContentControl Content="{Binding Path=Cell76, Mode=OneWay}"   Grid.Column="1" Grid.Row="0"   />
