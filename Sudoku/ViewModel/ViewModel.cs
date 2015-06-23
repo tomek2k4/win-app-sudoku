@@ -12,49 +12,72 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization;
 
 namespace Sudoku.ViewModel
 {
     public class ViewModelClass : INotifyPropertyChanged
     {
-        #region . Variables, Constants, And other Declarations .
-
-        #region . Variables .
-
-
-        #endregion
-
-        #region . Other Declarations .
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        #endregion
-
-        #endregion
-
-        #region . Constructors .
-        // Declared private so no one else can.
-        private ViewModelClass()
-        { }
-
-        #endregion
-
-        #region . Methods .
-
-        #region . Interface Implementation .
-
-        // This routine is normally called from the Set accessor of each property
-        // that is bound to the a WPF control.  We use the [CallMemberName] attribute
-        // so that the property name of the caller will be substituted as the argument.
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        private Pole[][] m_Plansza = new Pole[][]
         {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            new Pole[3],
+            new Pole[3],
+            new Pole[3],
+        };
+
+        public Pole[][] Plansza
+        {
+            get
+            {
+                return m_Plansza;
+            }
         }
 
-        #endregion
+        private RelayCommand[][] m_Komendy = new RelayCommand[3][];
 
-        #endregion
+        public RelayCommand[][] Komendy
+        {
+            get
+            {
+                return m_Komendy;
+            }
+        }
 
+        private Pole nextSymbol = Pole.Krzyzyk;
+
+        private Pole GetNextSymbol()
+        {
+            var x = nextSymbol;
+            nextSymbol = (nextSymbol == Pole.Krzyzyk ? Pole.Kolko : Pole.Krzyzyk);
+            return x;
+        }
+
+        public ViewModelClass()
+        {
+            for (int i = 0; i < 3; ++i)
+            {
+                m_Komendy[i] = new RelayCommand[3];
+                for (int j = 0; j < 3; ++j)
+                {
+                    var x = i;
+                    var y = j;
+                    m_Komendy[i][j] = new RelayCommand(
+                        () => { m_Plansza[x][y] = GetNextSymbol(); FirePropertyChanged("Plansza"); },
+                        () => { return m_Plansza[x][y] == Pole.Puste; }
+                        );
+                }
+            }
+        }
+
+        private void FirePropertyChanged(string name)
+        {
+            var _event = PropertyChanged;
+            if( _event != null)
+            {
+                _event(this, new PropertyChangedEventArgs(name));
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

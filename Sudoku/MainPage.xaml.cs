@@ -26,52 +26,19 @@ using Windows.UI.Core;
 
 namespace Sudoku
 {
-
-    
-
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class MainPage : Page
     {
 
-        private ViewModelClass _viewModel;
+        private ViewModelClass _viewModel = new ViewModelClass();
 
         public MainPage()
         {
+            this.DataContext = _viewModel;
             this.InitializeComponent();
         }
-
-        #region . Properties: Public .
-
-        /// <summary>
-        /// Gets or sets the ViewModel pointer for this class.
-        /// </summary>
-        internal ViewModelClass ViewModel
-        {
-            get
-            {
-                return _viewModel;
-            }
-            set
-            {
-                _viewModel = value;                             // Save a pointer to the ViewModel class
-                this.DataContext = value;                       // Set the datacontext of the form to the view model.
-            }
-        }
-
-        #endregion
-
-        #region . Cell Content Event Handlers .
-
-        private void A0_PointerPressed(object sender,PointerEventArgs e)
-        {
-            //if (ViewModel != null)
-            //    ViewModel.CellClicked(0, 0);
-        }
-
- 
-        #endregion
 
     }
 
