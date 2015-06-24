@@ -111,7 +111,12 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\CellClass.cs" />
+    <Compile Include="Model\CellIndex.cs" />
+    <Compile Include="Model\CellStateEnum.cs" />
+    <Compile Include="Model\GameModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\Common.cs" />
     <Compile Include="ViewModel\Pole.cs" />
     <Compile Include="ViewModel\PoleToStringConverter.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
