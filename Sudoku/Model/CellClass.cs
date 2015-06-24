@@ -71,7 +71,7 @@ namespace Sudoku.Model
             set
             {
                 _cellState = value;                                  // Save the new state.
-                FirePropertyChanged("CellState");                    // Raise a property changed event.
+//                FirePropertyChanged("CellState");                    // Raise a property changed event.
             }
         }
         /// <summary>
@@ -92,7 +92,7 @@ namespace Sudoku.Model
                         CellState = CellStateEnum.UserInputCorrect;         // Yes, set the state to correct.
                     else
                         CellState = CellStateEnum.UserInputIncorrect;       // No, set the state to incorrect.
-                    FirePropertyChanged("UserAnswer");                                  // Raise a property changed event.
+//                    FirePropertyChanged("UserAnswer");                                  // Raise a property changed event.
                 }
             }
         }

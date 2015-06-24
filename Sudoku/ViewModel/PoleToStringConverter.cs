@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sudoku.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,17 +12,16 @@ namespace Sudoku.ViewModel
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            var val = (Pole)value;
-            switch (val)
+            var val = (CellClass)value;
+
+            if (val != null)
             {
-                case Pole.Puste:
-                    return " ";
-                case Pole.Kolko:
-                    return "O";
-                case Pole.Krzyzyk:
-                    return "X";
+              return val.UserAnswer.ToString();
             }
-            return null;
+            else
+            {
+                return "0";
+            }
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

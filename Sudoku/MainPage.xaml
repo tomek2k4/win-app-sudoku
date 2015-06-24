@@ -18,7 +18,7 @@
             <Style TargetType="Button">
                 <Setter Property="HorizontalAlignment" Value="Stretch"/>
                 <Setter Property="VerticalAlignment" Value="Stretch"/>
-                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="FontSize" Value="20"/>
                 <Setter Property="Foreground" Value="Black"/>
 
                 <Setter Property="Template">
@@ -132,19 +132,18 @@
             <Rectangle Style="{StaticResource HorizontalBars}" Grid.Row="2"/>
             <Rectangle Style="{StaticResource VerticalBars}" Grid.Column="1"/>
             <Rectangle Style="{StaticResource VerticalBars}" Grid.Column="2"/>
-            
 
-            <Button Grid.Column="0" Grid.Row="0" />
-            <ContentControl Grid.Column="1" Grid.Row="0" />
-            <ContentControl Grid.Column="2" Grid.Row="0" />
+            <Button Grid.Column="0" Grid.Row="0" Content="{Binding Path=Cell00,Converter={StaticResource P2S}}"/>
+            <Button Grid.Column="1" Grid.Row="0" Content="{Binding Path=Cell10,Converter={StaticResource P2S}}" />
+            <Button Grid.Column="2" Grid.Row="0" Content="{Binding Path=Cell20,Converter={StaticResource P2S}}"/>
 
-            <ContentControl   Grid.Column="0" Grid.Row="1"  />
-            <ContentControl    Grid.Column="1" Grid.Row="1" />
-            <ContentControl   Grid.Column="2" Grid.Row="1"  />
+            <Button Grid.Column="0" Grid.Row="1" Content="{Binding Path=Cell01,Converter={StaticResource P2S}}"/>
+            <Button Grid.Column="1" Grid.Row="1" Content="{Binding Path=Cell11,Converter={StaticResource P2S}}"/>
+            <Button Grid.Column="2" Grid.Row="1" Content="{Binding Path=Cell21,Converter={StaticResource P2S}}" />
 
-            <ContentControl  Grid.Column="0" Grid.Row="2"  />
-            <ContentControl   Grid.Column="1" Grid.Row="2"  />
-            <ContentControl  Grid.Column="2" Grid.Row="2"   />
+            <Button Grid.Column="0" Grid.Row="2" Content="{Binding Path=Cell02,Converter={StaticResource P2S}}"/>
+            <Button Grid.Column="1" Grid.Row="2" Content="{Binding Path=Cell12,Converter={StaticResource P2S}}" />
+            <Button Grid.Column="2" Grid.Row="2" Content="{Binding Path=Cell22,Converter={StaticResource P2S}}" />
         </Grid>
 
         <Grid Grid.Row="0"
@@ -167,19 +166,19 @@
             <Rectangle Style="{StaticResource VerticalBars}" Grid.Column="1"/>
             <Rectangle Style="{StaticResource VerticalBars}" Grid.Column="2"/>
 
-            <Button  Grid.Column="0" Grid.Row="0" Content="{Binding Path=Plansza[0][0],Converter={StaticResource P2S}}" Command="{Binding Path=Komendy[0][0]}" />
-            <Button  Grid.Column="1" Grid.Row="0" Content="{Binding Path=Plansza[0][1],Converter={StaticResource P2S}}" Command="{Binding Path=Komendy[0][1]}" />
-            <Button  Grid.Column="2" Grid.Row="0" Content="{Binding Path=Plansza[0][2],Converter={StaticResource P2S}}" Command="{Binding Path=Komendy[0][2]}"    />
+            <Button Grid.Column="0" Grid.Row="0" Content="{Binding Path=Cell30,Converter={StaticResource P2S}}"/>
+            <Button Grid.Column="1" Grid.Row="0" Content="{Binding Path=Cell40,Converter={StaticResource P2S}}" />
+            <Button Grid.Column="2" Grid.Row="0" Content="{Binding Path=Cell50,Converter={StaticResource P2S}}"/>
 
-            <Button  Grid.Column="0" Grid.Row="1" Content="{Binding Path=Plansza[1][0],Converter={StaticResource P2S}}" Command="{Binding Path=Komendy[1][0]}"   />
-            <Button  Grid.Column="1" Grid.Row="1" Content="{Binding Path=Plansza[1][1],Converter={StaticResource P2S}}" Command="{Binding Path=Komendy[1][1]}"   />
-            <Button  Grid.Column="2" Grid.Row="1" Content="{Binding Path=Plansza[1][2],Converter={StaticResource P2S}}" Command="{Binding Path=Komendy[1][2]}"   />
+            <Button Grid.Column="0" Grid.Row="1" Content="{Binding Path=Cell31,Converter={StaticResource P2S}}"/>
+            <Button Grid.Column="1" Grid.Row="1" Content="{Binding Path=Cell41,Converter={StaticResource P2S}}"/>
+            <Button Grid.Column="2" Grid.Row="1" Content="{Binding Path=Cell51,Converter={StaticResource P2S}}" />
 
-            <Button Grid.Column="0" Grid.Row="2" Content="{Binding Path=Plansza[2][0],Converter={StaticResource P2S}}" Command="{Binding Path=Komendy[2][0]}"   />
-            <Button Grid.Column="1" Grid.Row="2" Content="{Binding Path=Plansza[2][1],Converter={StaticResource P2S}}" Command="{Binding Path=Komendy[2][1]}"   />
-            <Button Grid.Column="2" Grid.Row="2" Content="{Binding Path=Plansza[2][2],Converter={StaticResource P2S}}" Command="{Binding Path=Komendy[2][2]}"   />
+            <Button Grid.Column="0" Grid.Row="2" Content="{Binding Path=Cell32,Converter={StaticResource P2S}}"/>
+            <Button Grid.Column="1" Grid.Row="2" Content="{Binding Path=Cell42,Converter={StaticResource P2S}}" />
+            <Button Grid.Column="2" Grid.Row="2" Content="{Binding Path=Cell52,Converter={StaticResource P2S}}" />
 
-        </Grid>
+            </Grid>
 
         <Grid Grid.Row="0"
                   Grid.Column="2">
@@ -201,20 +200,19 @@
             <Rectangle Style="{StaticResource VerticalBars}" Grid.Column="1"/>
             <Rectangle Style="{StaticResource VerticalBars}" Grid.Column="2"/>
 
+            <Button Grid.Column="0" Grid.Row="0" Content="{Binding Path=Cell60,Converter={StaticResource P2S}}"/>
+            <Button Grid.Column="1" Grid.Row="0" Content="{Binding Path=Cell70,Converter={StaticResource P2S}}" />
+            <Button Grid.Column="2" Grid.Row="0" Content="{Binding Path=Cell80,Converter={StaticResource P2S}}"/>
 
-            <ContentControl Content="{Binding Path=Cell60, Mode=OneWay}"   Grid.Column="0" Grid.Row="0"   />
-            <ContentControl Content="{Binding Path=Cell70, Mode=OneWay}"   Grid.Column="1" Grid.Row="0"   />
-            <ContentControl Content="{Binding Path=Cell80, Mode=OneWay}"   Grid.Column="2" Grid.Row="0"   />
+            <Button Grid.Column="0" Grid.Row="1" Content="{Binding Path=Cell61,Converter={StaticResource P2S}}"/>
+            <Button Grid.Column="1" Grid.Row="1" Content="{Binding Path=Cell71,Converter={StaticResource P2S}}"/>
+            <Button Grid.Column="2" Grid.Row="1" Content="{Binding Path=Cell81,Converter={StaticResource P2S}}" />
 
-            <ContentControl Content="{Binding Path=Cell61, Mode=OneWay}"   Grid.Column="0" Grid.Row="1"   />
-            <ContentControl Content="{Binding Path=Cell71, Mode=OneWay}"   Grid.Column="1" Grid.Row="1"   />
-            <ContentControl Content="{Binding Path=Cell81, Mode=OneWay}"   Grid.Column="2" Grid.Row="1"   />
+            <Button Grid.Column="0" Grid.Row="2" Content="{Binding Path=Cell62,Converter={StaticResource P2S}}"/>
+            <Button Grid.Column="1" Grid.Row="2" Content="{Binding Path=Cell72,Converter={StaticResource P2S}}" />
+            <Button Grid.Column="2" Grid.Row="2" Content="{Binding Path=Cell82,Converter={StaticResource P2S}}" />
 
-            <ContentControl Content="{Binding Path=Cell62, Mode=OneWay}"   Grid.Column="0" Grid.Row="2"   />
-            <ContentControl Content="{Binding Path=Cell72, Mode=OneWay}"   Grid.Column="1" Grid.Row="2"   />
-            <ContentControl Content="{Binding Path=Cell82, Mode=OneWay}"   Grid.Column="2" Grid.Row="2"   />
-
-        </Grid>
+            </Grid>
 
         <Grid Grid.Row="1"
                   Grid.Column="0">
@@ -235,19 +233,19 @@
             <Rectangle Style="{StaticResource VerticalBars}" Grid.Column="1"/>
             <Rectangle Style="{StaticResource VerticalBars}" Grid.Column="2"/>
 
-            <ContentControl Content="{Binding Path=Cell03, Mode=OneWay}"   Grid.Column="0" Grid.Row="0"   />
-            <ContentControl Content="{Binding Path=Cell13, Mode=OneWay}"   Grid.Column="1" Grid.Row="0"   />
-            <ContentControl Content="{Binding Path=Cell23, Mode=OneWay}"   Grid.Column="2" Grid.Row="0"   />
+            <Button Grid.Column="0" Grid.Row="0" Content="{Binding Path=Cell03,Converter={StaticResource P2S}}"/>
+            <Button Grid.Column="1" Grid.Row="0" Content="{Binding Path=Cell13,Converter={StaticResource P2S}}" />
+            <Button Grid.Column="2" Grid.Row="0" Content="{Binding Path=Cell23,Converter={StaticResource P2S}}"/>
 
-            <ContentControl Content="{Binding Path=Cell04, Mode=OneWay}"   Grid.Column="0" Grid.Row="1"   />
-            <ContentControl Content="{Binding Path=Cell14, Mode=OneWay}"   Grid.Column="1" Grid.Row="1"   />
-            <ContentControl Content="{Binding Path=Cell24, Mode=OneWay}"   Grid.Column="2" Grid.Row="1"   />
+            <Button Grid.Column="0" Grid.Row="1" Content="{Binding Path=Cell04,Converter={StaticResource P2S}}"/>
+            <Button Grid.Column="1" Grid.Row="1" Content="{Binding Path=Cell14,Converter={StaticResource P2S}}"/>
+            <Button Grid.Column="2" Grid.Row="1" Content="{Binding Path=Cell24,Converter={StaticResource P2S}}" />
 
-            <ContentControl Content="{Binding Path=Cell05, Mode=OneWay}"   Grid.Column="0" Grid.Row="2"   />
-            <ContentControl Content="{Binding Path=Cell15, Mode=OneWay}"   Grid.Column="1" Grid.Row="2"   />
-            <ContentControl Content="{Binding Path=Cell25, Mode=OneWay}"   Grid.Column="2" Grid.Row="2"   />
+            <Button Grid.Column="0" Grid.Row="2" Content="{Binding Path=Cell05,Converter={StaticResource P2S}}"/>
+            <Button Grid.Column="1" Grid.Row="2" Content="{Binding Path=Cell15,Converter={StaticResource P2S}}" />
+            <Button Grid.Column="2" Grid.Row="2" Content="{Binding Path=Cell25,Converter={StaticResource P2S}}" />
 
-        </Grid>
+            </Grid>
 
         <Grid Grid.Row="1"
                   Grid.Column="1">
@@ -268,19 +266,19 @@
             <Rectangle Style="{StaticResource VerticalBars}" Grid.Column="1"/>
             <Rectangle Style="{StaticResource VerticalBars}" Grid.Column="2"/>
 
-            <ContentControl Content="{Binding Path=Cell33, Mode=OneWay}"   Grid.Column="0" Grid.Row="0"   />
-            <ContentControl Content="{Binding Path=Cell43, Mode=OneWay}"   Grid.Column="1" Grid.Row="0"   />
-            <ContentControl Content="{Binding Path=Cell53, Mode=OneWay}"   Grid.Column="2" Grid.Row="0"   />
+            <Button Grid.Column="0" Grid.Row="0" Content="{Binding Path=Cell33,Converter={StaticResource P2S}}"/>
+            <Button Grid.Column="1" Grid.Row="0" Content="{Binding Path=Cell43,Converter={StaticResource P2S}}" />
+            <Button Grid.Column="2" Grid.Row="0" Content="{Binding Path=Cell53,Converter={StaticResource P2S}}"/>
 
-            <ContentControl Content="{Binding Path=Cell34, Mode=OneWay}"   Grid.Column="0" Grid.Row="1"   />
-            <ContentControl Content="{Binding Path=Cell44, Mode=OneWay}"   Grid.Column="1" Grid.Row="1"   />
-            <ContentControl Content="{Binding Path=Cell54, Mode=OneWay}"   Grid.Column="2" Grid.Row="1"   />
+            <Button Grid.Column="0" Grid.Row="1" Content="{Binding Path=Cell34,Converter={StaticResource P2S}}"/>
+            <Button Grid.Column="1" Grid.Row="1" Content="{Binding Path=Cell44,Converter={StaticResource P2S}}"/>
+            <Button Grid.Column="2" Grid.Row="1" Content="{Binding Path=Cell54,Converter={StaticResource P2S}}" />
 
-            <ContentControl Content="{Binding Path=Cell35, Mode=OneWay}"   Grid.Column="0" Grid.Row="2"   />
-            <ContentControl Content="{Binding Path=Cell45, Mode=OneWay}"   Grid.Column="1" Grid.Row="2"   />
-            <ContentControl Content="{Binding Path=Cell55, Mode=OneWay}"   Grid.Column="2" Grid.Row="2"   />
+            <Button Grid.Column="0" Grid.Row="2" Content="{Binding Path=Cell35,Converter={StaticResource P2S}}"/>
+            <Button Grid.Column="1" Grid.Row="2" Content="{Binding Path=Cell45,Converter={StaticResource P2S}}" />
+            <Button Grid.Column="2" Grid.Row="2" Content="{Binding Path=Cell55,Converter={StaticResource P2S}}" />
 
-        </Grid>
+            </Grid>
 
         <Grid Grid.Row="1"
                   Grid.Column="2">
@@ -301,19 +299,19 @@
             <Rectangle Style="{StaticResource VerticalBars}" Grid.Column="1"/>
             <Rectangle Style="{StaticResource VerticalBars}" Grid.Column="2"/>
 
-            <ContentControl Content="{Binding Path=Cell63, Mode=OneWay}"   Grid.Column="0" Grid.Row="0"   />
-            <ContentControl Content="{Binding Path=Cell73, Mode=OneWay}"   Grid.Column="1" Grid.Row="0"   />
-            <ContentControl Content="{Binding Path=Cell83, Mode=OneWay}"   Grid.Column="2" Grid.Row="0"   />
+            <Button Grid.Column="0" Grid.Row="0" Content="{Binding Path=Cell63,Converter={StaticResource P2S}}"/>
+            <Button Grid.Column="1" Grid.Row="0" Content="{Binding Path=Cell73,Converter={StaticResource P2S}}" />
+            <Button Grid.Column="2" Grid.Row="0" Content="{Binding Path=Cell83,Converter={StaticResource P2S}}"/>
 
-            <ContentControl Content="{Binding Path=Cell64, Mode=OneWay}"   Grid.Column="0" Grid.Row="1"   />
-            <ContentControl Content="{Binding Path=Cell74, Mode=OneWay}"   Grid.Column="1" Grid.Row="1"   />
-            <ContentControl Content="{Binding Path=Cell84, Mode=OneWay}"   Grid.Column="2" Grid.Row="1"   />
+            <Button Grid.Column="0" Grid.Row="1" Content="{Binding Path=Cell64,Converter={StaticResource P2S}}"/>
+            <Button Grid.Column="1" Grid.Row="1" Content="{Binding Path=Cell74,Converter={StaticResource P2S}}"/>
+            <Button Grid.Column="2" Grid.Row="1" Content="{Binding Path=Cell84,Converter={StaticResource P2S}}" />
 
-            <ContentControl Content="{Binding Path=Cell65, Mode=OneWay}"   Grid.Column="0" Grid.Row="2"   />
-            <ContentControl Content="{Binding Path=Cell75, Mode=OneWay}"   Grid.Column="1" Grid.Row="2"   />
-            <ContentControl Content="{Binding Path=Cell85, Mode=OneWay}"   Grid.Column="2" Grid.Row="2"   />
+            <Button Grid.Column="0" Grid.Row="2" Content="{Binding Path=Cell65,Converter={StaticResource P2S}}"/>
+            <Button Grid.Column="1" Grid.Row="2" Content="{Binding Path=Cell75,Converter={StaticResource P2S}}" />
+            <Button Grid.Column="2" Grid.Row="2" Content="{Binding Path=Cell85,Converter={StaticResource P2S}}" />
 
-        </Grid>
+            </Grid>
 
         <Grid Grid.Row="2"
                   Grid.Column="0">
@@ -334,19 +332,19 @@
             <Rectangle Style="{StaticResource VerticalBars}" Grid.Column="1"/>
             <Rectangle Style="{StaticResource VerticalBars}" Grid.Column="2"/>
 
-            <ContentControl Content="{Binding Path=Cell06, Mode=OneWay}"   Grid.Column="0" Grid.Row="0"   />
-            <ContentControl Content="{Binding Path=Cell16, Mode=OneWay}"   Grid.Column="1" Grid.Row="0"   />
-            <ContentControl Content="{Binding Path=Cell26, Mode=OneWay}"   Grid.Column="2" Grid.Row="0"   />
+            <Button Grid.Column="0" Grid.Row="0" Content="{Binding Path=Cell06,Converter={StaticResource P2S}}"/>
+            <Button Grid.Column="1" Grid.Row="0" Content="{Binding Path=Cell16,Converter={StaticResource P2S}}" />
+            <Button Grid.Column="2" Grid.Row="0" Content="{Binding Path=Cell26,Converter={StaticResource P2S}}"/>
 
-            <ContentControl Content="{Binding Path=Cell07, Mode=OneWay}"   Grid.Column="0" Grid.Row="1"   />
-            <ContentControl Content="{Binding Path=Cell17, Mode=OneWay}"   Grid.Column="1" Grid.Row="1"   />
-            <ContentControl Content="{Binding Path=Cell27, Mode=OneWay}"   Grid.Column="2" Grid.Row="1"   />
+            <Button Grid.Column="0" Grid.Row="1" Content="{Binding Path=Cell07,Converter={StaticResource P2S}}"/>
+            <Button Grid.Column="1" Grid.Row="1" Content="{Binding Path=Cell17,Converter={StaticResource P2S}}"/>
+            <Button Grid.Column="2" Grid.Row="1" Content="{Binding Path=Cell27,Converter={StaticResource P2S}}" />
 
-            <ContentControl Content="{Binding Path=Cell08, Mode=OneWay}"   Grid.Column="0" Grid.Row="2"   />
-            <ContentControl Content="{Binding Path=Cell18, Mode=OneWay}"   Grid.Column="1" Grid.Row="2"   />
-            <ContentControl Content="{Binding Path=Cell28, Mode=OneWay}"   Grid.Column="2" Grid.Row="2"   />
+            <Button Grid.Column="0" Grid.Row="2" Content="{Binding Path=Cell08,Converter={StaticResource P2S}}"/>
+            <Button Grid.Column="1" Grid.Row="2" Content="{Binding Path=Cell18,Converter={StaticResource P2S}}" />
+            <Button Grid.Column="2" Grid.Row="2" Content="{Binding Path=Cell28,Converter={StaticResource P2S}}" />
 
-        </Grid>
+            </Grid>
 
         <Grid Grid.Row="2"
                   Grid.Column="1">
@@ -367,19 +365,19 @@
             <Rectangle Style="{StaticResource VerticalBars}" Grid.Column="1"/>
             <Rectangle Style="{StaticResource VerticalBars}" Grid.Column="2"/>
 
-            <ContentControl Content="{Binding Path=Cell36, Mode=OneWay}"   Grid.Column="0" Grid.Row="0"   />
-            <ContentControl Content="{Binding Path=Cell46, Mode=OneWay}"   Grid.Column="1" Grid.Row="0"   />
-            <ContentControl Content="{Binding Path=Cell56, Mode=OneWay}"   Grid.Column="2" Grid.Row="0"   />
+            <Button Grid.Column="0" Grid.Row="0" Content="{Binding Path=Cell36,Converter={StaticResource P2S}}"/>
+            <Button Grid.Column="1" Grid.Row="0" Content="{Binding Path=Cell46,Converter={StaticResource P2S}}" />
+            <Button Grid.Column="2" Grid.Row="0" Content="{Binding Path=Cell56,Converter={StaticResource P2S}}"/>
 
-            <ContentControl Content="{Binding Path=Cell37, Mode=OneWay}"   Grid.Column="0" Grid.Row="1"   />
-            <ContentControl Content="{Binding Path=Cell47, Mode=OneWay}"   Grid.Column="1" Grid.Row="1"   />
-            <ContentControl Content="{Binding Path=Cell57, Mode=OneWay}"   Grid.Column="2" Grid.Row="1"   />
+            <Button Grid.Column="0" Grid.Row="1" Content="{Binding Path=Cell37,Converter={StaticResource P2S}}"/>
+            <Button Grid.Column="1" Grid.Row="1" Content="{Binding Path=Cell47,Converter={StaticResource P2S}}"/>
+            <Button Grid.Column="2" Grid.Row="1" Content="{Binding Path=Cell57,Converter={StaticResource P2S}}" />
 
-            <ContentControl Content="{Binding Path=Cell38, Mode=OneWay}"   Grid.Column="0" Grid.Row="2"   />
-            <ContentControl Content="{Binding Path=Cell48, Mode=OneWay}"   Grid.Column="1" Grid.Row="2"   />
-            <ContentControl Content="{Binding Path=Cell58, Mode=OneWay}"   Grid.Column="2" Grid.Row="2"   />
+            <Button Grid.Column="0" Grid.Row="2" Content="{Binding Path=Cell38,Converter={StaticResource P2S}}"/>
+            <Button Grid.Column="1" Grid.Row="2" Content="{Binding Path=Cell48,Converter={StaticResource P2S}}" />
+            <Button Grid.Column="2" Grid.Row="2" Content="{Binding Path=Cell58,Converter={StaticResource P2S}}" />
 
-        </Grid>
+            </Grid>
 
         <Grid Grid.Row="2"
                   Grid.Column="2">
@@ -400,19 +398,19 @@
             <Rectangle Style="{StaticResource VerticalBars}" Grid.Column="1"/>
             <Rectangle Style="{StaticResource VerticalBars}" Grid.Column="2"/>
 
-            <ContentControl Content="{Binding Path=Cell66, Mode=OneWay}"   Grid.Column="0" Grid.Row="0"   />
-            <ContentControl Content="{Binding Path=Cell76, Mode=OneWay}"   Grid.Column="1" Grid.Row="0"   />
-            <ContentControl Content="{Binding Path=Cell86, Mode=OneWay}"   Grid.Column="2" Grid.Row="0"   />
+            <Button Grid.Column="0" Grid.Row="0" Content="{Binding Path=Cell66,Converter={StaticResource P2S}}"/>
+            <Button Grid.Column="1" Grid.Row="0" Content="{Binding Path=Cell76,Converter={StaticResource P2S}}" />
+            <Button Grid.Column="2" Grid.Row="0" Content="{Binding Path=Cell86,Converter={StaticResource P2S}}"/>
 
-            <ContentControl Content="{Binding Path=Cell67, Mode=OneWay}"   Grid.Column="0" Grid.Row="1"   />
-            <ContentControl Content="{Binding Path=Cell77, Mode=OneWay}"   Grid.Column="1" Grid.Row="1"   />
-            <ContentControl Content="{Binding Path=Cell87, Mode=OneWay}"   Grid.Column="2" Grid.Row="1"   />
+            <Button Grid.Column="0" Grid.Row="1" Content="{Binding Path=Cell67,Converter={StaticResource P2S}}"/>
+            <Button Grid.Column="1" Grid.Row="1" Content="{Binding Path=Cell77,Converter={StaticResource P2S}}"/>
+            <Button Grid.Column="2" Grid.Row="1" Content="{Binding Path=Cell87,Converter={StaticResource P2S}}" />
 
-            <ContentControl Content="{Binding Path=Cell68, Mode=OneWay}"   Grid.Column="0" Grid.Row="2"   />
-            <ContentControl Content="{Binding Path=Cell78, Mode=OneWay}"   Grid.Column="1" Grid.Row="2"   />
-            <ContentControl Content="{Binding Path=Cell88, Mode=OneWay}"   Grid.Column="2" Grid.Row="2"   />
+            <Button Grid.Column="0" Grid.Row="2" Content="{Binding Path=Cell68,Converter={StaticResource P2S}}"/>
+            <Button Grid.Column="1" Grid.Row="2" Content="{Binding Path=Cell78,Converter={StaticResource P2S}}" />
+            <Button Grid.Column="2" Grid.Row="2" Content="{Binding Path=Cell88,Converter={StaticResource P2S}}" />
 
-        </Grid>
+            </Grid>
 
     </Grid>
     </Canvas>

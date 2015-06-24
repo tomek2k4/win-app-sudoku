@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Sudoku.Model
 {
-    class CellIndex
+    public class CellIndex
     {
         #region . Constructors .
 
