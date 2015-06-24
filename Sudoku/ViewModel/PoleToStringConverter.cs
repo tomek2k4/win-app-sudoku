@@ -16,7 +16,14 @@ namespace Sudoku.ViewModel
 
             if (val != null)
             {
-              return val.UserAnswer.ToString();
+                //if (val.UserAnswer == 0)
+                //{
+                //    return " ";
+                //}
+                //else
+                //{
+                    return val.UserAnswer.ToString();
+                //}     
             }
             else
             {

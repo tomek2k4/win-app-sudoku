@@ -133,17 +133,17 @@
             <Rectangle Style="{StaticResource VerticalBars}" Grid.Column="1"/>
             <Rectangle Style="{StaticResource VerticalBars}" Grid.Column="2"/>
 
-            <Button Grid.Column="0" Grid.Row="0" Content="{Binding Path=Cell00,Converter={StaticResource P2S}}"/>
-            <Button Grid.Column="1" Grid.Row="0" Content="{Binding Path=Cell10,Converter={StaticResource P2S}}" />
-            <Button Grid.Column="2" Grid.Row="0" Content="{Binding Path=Cell20,Converter={StaticResource P2S}}"/>
+            <Button Grid.Column="0" Grid.Row="0" Content="{Binding Path=Cell00,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell00}"/>
+            <Button Grid.Column="1" Grid.Row="0" Content="{Binding Path=Cell10,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell10}"/>
+            <Button Grid.Column="2" Grid.Row="0" Content="{Binding Path=Cell20,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell20}"/>
 
-            <Button Grid.Column="0" Grid.Row="1" Content="{Binding Path=Cell01,Converter={StaticResource P2S}}"/>
-            <Button Grid.Column="1" Grid.Row="1" Content="{Binding Path=Cell11,Converter={StaticResource P2S}}"/>
-            <Button Grid.Column="2" Grid.Row="1" Content="{Binding Path=Cell21,Converter={StaticResource P2S}}" />
+            <Button Grid.Column="0" Grid.Row="1" Content="{Binding Path=Cell01,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell01}"/>
+            <Button Grid.Column="1" Grid.Row="1" Content="{Binding Path=Cell11,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell11}"/>
+            <Button Grid.Column="2" Grid.Row="1" Content="{Binding Path=Cell21,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell21}"/>
 
-            <Button Grid.Column="0" Grid.Row="2" Content="{Binding Path=Cell02,Converter={StaticResource P2S}}"/>
-            <Button Grid.Column="1" Grid.Row="2" Content="{Binding Path=Cell12,Converter={StaticResource P2S}}" />
-            <Button Grid.Column="2" Grid.Row="2" Content="{Binding Path=Cell22,Converter={StaticResource P2S}}" />
+            <Button Grid.Column="0" Grid.Row="2" Content="{Binding Path=Cell02,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell02}"/>
+            <Button Grid.Column="1" Grid.Row="2" Content="{Binding Path=Cell12,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell12}" />
+            <Button Grid.Column="2" Grid.Row="2" Content="{Binding Path=Cell22,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell22}" />
         </Grid>
 
         <Grid Grid.Row="0"
@@ -166,17 +166,17 @@
             <Rectangle Style="{StaticResource VerticalBars}" Grid.Column="1"/>
             <Rectangle Style="{StaticResource VerticalBars}" Grid.Column="2"/>
 
-            <Button Grid.Column="0" Grid.Row="0" Content="{Binding Path=Cell30,Converter={StaticResource P2S}}"/>
-            <Button Grid.Column="1" Grid.Row="0" Content="{Binding Path=Cell40,Converter={StaticResource P2S}}" />
-            <Button Grid.Column="2" Grid.Row="0" Content="{Binding Path=Cell50,Converter={StaticResource P2S}}"/>
+            <Button Grid.Column="0" Grid.Row="0" Content="{Binding Path=Cell30,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell30}"/>
+            <Button Grid.Column="1" Grid.Row="0" Content="{Binding Path=Cell40,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell40}" />
+            <Button Grid.Column="2" Grid.Row="0" Content="{Binding Path=Cell50,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell50}"/>
 
-            <Button Grid.Column="0" Grid.Row="1" Content="{Binding Path=Cell31,Converter={StaticResource P2S}}"/>
-            <Button Grid.Column="1" Grid.Row="1" Content="{Binding Path=Cell41,Converter={StaticResource P2S}}"/>
-            <Button Grid.Column="2" Grid.Row="1" Content="{Binding Path=Cell51,Converter={StaticResource P2S}}" />
+            <Button Grid.Column="0" Grid.Row="1" Content="{Binding Path=Cell31,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell31}"/>
+            <Button Grid.Column="1" Grid.Row="1" Content="{Binding Path=Cell41,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell41}"/>
+            <Button Grid.Column="2" Grid.Row="1" Content="{Binding Path=Cell51,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell51}" />
 
-            <Button Grid.Column="0" Grid.Row="2" Content="{Binding Path=Cell32,Converter={StaticResource P2S}}"/>
-            <Button Grid.Column="1" Grid.Row="2" Content="{Binding Path=Cell42,Converter={StaticResource P2S}}" />
-            <Button Grid.Column="2" Grid.Row="2" Content="{Binding Path=Cell52,Converter={StaticResource P2S}}" />
+            <Button Grid.Column="0" Grid.Row="2" Content="{Binding Path=Cell32,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell32}"/>
+            <Button Grid.Column="1" Grid.Row="2" Content="{Binding Path=Cell42,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell42}" />
+            <Button Grid.Column="2" Grid.Row="2" Content="{Binding Path=Cell52,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell52}" />
 
             </Grid>
 
@@ -200,17 +200,17 @@
             <Rectangle Style="{StaticResource VerticalBars}" Grid.Column="1"/>
             <Rectangle Style="{StaticResource VerticalBars}" Grid.Column="2"/>
 
-            <Button Grid.Column="0" Grid.Row="0" Content="{Binding Path=Cell60,Converter={StaticResource P2S}}"/>
-            <Button Grid.Column="1" Grid.Row="0" Content="{Binding Path=Cell70,Converter={StaticResource P2S}}" />
-            <Button Grid.Column="2" Grid.Row="0" Content="{Binding Path=Cell80,Converter={StaticResource P2S}}"/>
+            <Button Grid.Column="0" Grid.Row="0" Content="{Binding Path=Cell60,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell60}"/>
+            <Button Grid.Column="1" Grid.Row="0" Content="{Binding Path=Cell70,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell70}" />
+            <Button Grid.Column="2" Grid.Row="0" Content="{Binding Path=Cell80,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell80}"/>
 
-            <Button Grid.Column="0" Grid.Row="1" Content="{Binding Path=Cell61,Converter={StaticResource P2S}}"/>
-            <Button Grid.Column="1" Grid.Row="1" Content="{Binding Path=Cell71,Converter={StaticResource P2S}}"/>
-            <Button Grid.Column="2" Grid.Row="1" Content="{Binding Path=Cell81,Converter={StaticResource P2S}}" />
+            <Button Grid.Column="0" Grid.Row="1" Content="{Binding Path=Cell61,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell61}"/>
+            <Button Grid.Column="1" Grid.Row="1" Content="{Binding Path=Cell71,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell71}"/>
+            <Button Grid.Column="2" Grid.Row="1" Content="{Binding Path=Cell81,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell81}" />
 
-            <Button Grid.Column="0" Grid.Row="2" Content="{Binding Path=Cell62,Converter={StaticResource P2S}}"/>
-            <Button Grid.Column="1" Grid.Row="2" Content="{Binding Path=Cell72,Converter={StaticResource P2S}}" />
-            <Button Grid.Column="2" Grid.Row="2" Content="{Binding Path=Cell82,Converter={StaticResource P2S}}" />
+            <Button Grid.Column="0" Grid.Row="2" Content="{Binding Path=Cell62,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell62}"/>
+            <Button Grid.Column="1" Grid.Row="2" Content="{Binding Path=Cell72,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell72}" />
+            <Button Grid.Column="2" Grid.Row="2" Content="{Binding Path=Cell82,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell82}" />
 
             </Grid>
 
@@ -233,17 +233,17 @@
             <Rectangle Style="{StaticResource VerticalBars}" Grid.Column="1"/>
             <Rectangle Style="{StaticResource VerticalBars}" Grid.Column="2"/>
 
-            <Button Grid.Column="0" Grid.Row="0" Content="{Binding Path=Cell03,Converter={StaticResource P2S}}"/>
-            <Button Grid.Column="1" Grid.Row="0" Content="{Binding Path=Cell13,Converter={StaticResource P2S}}" />
-            <Button Grid.Column="2" Grid.Row="0" Content="{Binding Path=Cell23,Converter={StaticResource P2S}}"/>
+            <Button Grid.Column="0" Grid.Row="0" Content="{Binding Path=Cell03,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell03}"/>
+            <Button Grid.Column="1" Grid.Row="0" Content="{Binding Path=Cell13,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell13}" />
+            <Button Grid.Column="2" Grid.Row="0" Content="{Binding Path=Cell23,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell23}"/>
 
-            <Button Grid.Column="0" Grid.Row="1" Content="{Binding Path=Cell04,Converter={StaticResource P2S}}"/>
-            <Button Grid.Column="1" Grid.Row="1" Content="{Binding Path=Cell14,Converter={StaticResource P2S}}"/>
-            <Button Grid.Column="2" Grid.Row="1" Content="{Binding Path=Cell24,Converter={StaticResource P2S}}" />
+            <Button Grid.Column="0" Grid.Row="1" Content="{Binding Path=Cell04,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell04}"/>
+            <Button Grid.Column="1" Grid.Row="1" Content="{Binding Path=Cell14,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell14}"/>
+            <Button Grid.Column="2" Grid.Row="1" Content="{Binding Path=Cell24,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell24}" />
 
-            <Button Grid.Column="0" Grid.Row="2" Content="{Binding Path=Cell05,Converter={StaticResource P2S}}"/>
-            <Button Grid.Column="1" Grid.Row="2" Content="{Binding Path=Cell15,Converter={StaticResource P2S}}" />
-            <Button Grid.Column="2" Grid.Row="2" Content="{Binding Path=Cell25,Converter={StaticResource P2S}}" />
+            <Button Grid.Column="0" Grid.Row="2" Content="{Binding Path=Cell05,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell05}"/>
+            <Button Grid.Column="1" Grid.Row="2" Content="{Binding Path=Cell15,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell15}" />
+            <Button Grid.Column="2" Grid.Row="2" Content="{Binding Path=Cell25,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell25}" />
 
             </Grid>
 
@@ -266,17 +266,17 @@
             <Rectangle Style="{StaticResource VerticalBars}" Grid.Column="1"/>
             <Rectangle Style="{StaticResource VerticalBars}" Grid.Column="2"/>
 
-            <Button Grid.Column="0" Grid.Row="0" Content="{Binding Path=Cell33,Converter={StaticResource P2S}}"/>
-            <Button Grid.Column="1" Grid.Row="0" Content="{Binding Path=Cell43,Converter={StaticResource P2S}}" />
-            <Button Grid.Column="2" Grid.Row="0" Content="{Binding Path=Cell53,Converter={StaticResource P2S}}"/>
+            <Button Grid.Column="0" Grid.Row="0" Content="{Binding Path=Cell33,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell33}"/>
+            <Button Grid.Column="1" Grid.Row="0" Content="{Binding Path=Cell43,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell43}" />
+            <Button Grid.Column="2" Grid.Row="0" Content="{Binding Path=Cell53,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell53}"/>
 
-            <Button Grid.Column="0" Grid.Row="1" Content="{Binding Path=Cell34,Converter={StaticResource P2S}}"/>
-            <Button Grid.Column="1" Grid.Row="1" Content="{Binding Path=Cell44,Converter={StaticResource P2S}}"/>
-            <Button Grid.Column="2" Grid.Row="1" Content="{Binding Path=Cell54,Converter={StaticResource P2S}}" />
+            <Button Grid.Column="0" Grid.Row="1" Content="{Binding Path=Cell34,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell34}"/>
+            <Button Grid.Column="1" Grid.Row="1" Content="{Binding Path=Cell44,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell44}"/>
+            <Button Grid.Column="2" Grid.Row="1" Content="{Binding Path=Cell54,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell54}" />
 
-            <Button Grid.Column="0" Grid.Row="2" Content="{Binding Path=Cell35,Converter={StaticResource P2S}}"/>
-            <Button Grid.Column="1" Grid.Row="2" Content="{Binding Path=Cell45,Converter={StaticResource P2S}}" />
-            <Button Grid.Column="2" Grid.Row="2" Content="{Binding Path=Cell55,Converter={StaticResource P2S}}" />
+            <Button Grid.Column="0" Grid.Row="2" Content="{Binding Path=Cell35,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell35}"/>
+            <Button Grid.Column="1" Grid.Row="2" Content="{Binding Path=Cell45,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell45}" />
+            <Button Grid.Column="2" Grid.Row="2" Content="{Binding Path=Cell55,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell55}" />
 
             </Grid>
 
@@ -299,17 +299,17 @@
             <Rectangle Style="{StaticResource VerticalBars}" Grid.Column="1"/>
             <Rectangle Style="{StaticResource VerticalBars}" Grid.Column="2"/>
 
-            <Button Grid.Column="0" Grid.Row="0" Content="{Binding Path=Cell63,Converter={StaticResource P2S}}"/>
-            <Button Grid.Column="1" Grid.Row="0" Content="{Binding Path=Cell73,Converter={StaticResource P2S}}" />
-            <Button Grid.Column="2" Grid.Row="0" Content="{Binding Path=Cell83,Converter={StaticResource P2S}}"/>
+            <Button Grid.Column="0" Grid.Row="0" Content="{Binding Path=Cell63,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell63}"/>
+            <Button Grid.Column="1" Grid.Row="0" Content="{Binding Path=Cell73,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell73}" />
+            <Button Grid.Column="2" Grid.Row="0" Content="{Binding Path=Cell83,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell83}"/>
 
-            <Button Grid.Column="0" Grid.Row="1" Content="{Binding Path=Cell64,Converter={StaticResource P2S}}"/>
-            <Button Grid.Column="1" Grid.Row="1" Content="{Binding Path=Cell74,Converter={StaticResource P2S}}"/>
-            <Button Grid.Column="2" Grid.Row="1" Content="{Binding Path=Cell84,Converter={StaticResource P2S}}" />
+            <Button Grid.Column="0" Grid.Row="1" Content="{Binding Path=Cell64,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell64}"/>
+            <Button Grid.Column="1" Grid.Row="1" Content="{Binding Path=Cell74,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell74}"/>
+            <Button Grid.Column="2" Grid.Row="1" Content="{Binding Path=Cell84,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell84}" />
 
-            <Button Grid.Column="0" Grid.Row="2" Content="{Binding Path=Cell65,Converter={StaticResource P2S}}"/>
-            <Button Grid.Column="1" Grid.Row="2" Content="{Binding Path=Cell75,Converter={StaticResource P2S}}" />
-            <Button Grid.Column="2" Grid.Row="2" Content="{Binding Path=Cell85,Converter={StaticResource P2S}}" />
+            <Button Grid.Column="0" Grid.Row="2" Content="{Binding Path=Cell65,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell65}"/>
+            <Button Grid.Column="1" Grid.Row="2" Content="{Binding Path=Cell75,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell75}" />
+            <Button Grid.Column="2" Grid.Row="2" Content="{Binding Path=Cell85,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell85}" />
 
             </Grid>
 
@@ -332,17 +332,17 @@
             <Rectangle Style="{StaticResource VerticalBars}" Grid.Column="1"/>
             <Rectangle Style="{StaticResource VerticalBars}" Grid.Column="2"/>
 
-            <Button Grid.Column="0" Grid.Row="0" Content="{Binding Path=Cell06,Converter={StaticResource P2S}}"/>
-            <Button Grid.Column="1" Grid.Row="0" Content="{Binding Path=Cell16,Converter={StaticResource P2S}}" />
-            <Button Grid.Column="2" Grid.Row="0" Content="{Binding Path=Cell26,Converter={StaticResource P2S}}"/>
+            <Button Grid.Column="0" Grid.Row="0" Content="{Binding Path=Cell06,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell06}"/>
+            <Button Grid.Column="1" Grid.Row="0" Content="{Binding Path=Cell16,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell16}" />
+            <Button Grid.Column="2" Grid.Row="0" Content="{Binding Path=Cell26,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell26}"/>
 
-            <Button Grid.Column="0" Grid.Row="1" Content="{Binding Path=Cell07,Converter={StaticResource P2S}}"/>
-            <Button Grid.Column="1" Grid.Row="1" Content="{Binding Path=Cell17,Converter={StaticResource P2S}}"/>
-            <Button Grid.Column="2" Grid.Row="1" Content="{Binding Path=Cell27,Converter={StaticResource P2S}}" />
+            <Button Grid.Column="0" Grid.Row="1" Content="{Binding Path=Cell07,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell07}"/>
+            <Button Grid.Column="1" Grid.Row="1" Content="{Binding Path=Cell17,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell17}"/>
+            <Button Grid.Column="2" Grid.Row="1" Content="{Binding Path=Cell27,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell27}" />
 
-            <Button Grid.Column="0" Grid.Row="2" Content="{Binding Path=Cell08,Converter={StaticResource P2S}}"/>
-            <Button Grid.Column="1" Grid.Row="2" Content="{Binding Path=Cell18,Converter={StaticResource P2S}}" />
-            <Button Grid.Column="2" Grid.Row="2" Content="{Binding Path=Cell28,Converter={StaticResource P2S}}" />
+            <Button Grid.Column="0" Grid.Row="2" Content="{Binding Path=Cell08,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell08}"/>
+            <Button Grid.Column="1" Grid.Row="2" Content="{Binding Path=Cell18,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell18}" />
+            <Button Grid.Column="2" Grid.Row="2" Content="{Binding Path=Cell28,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell28}" />
 
             </Grid>
 
@@ -365,17 +365,17 @@
             <Rectangle Style="{StaticResource VerticalBars}" Grid.Column="1"/>
             <Rectangle Style="{StaticResource VerticalBars}" Grid.Column="2"/>
 
-            <Button Grid.Column="0" Grid.Row="0" Content="{Binding Path=Cell36,Converter={StaticResource P2S}}"/>
-            <Button Grid.Column="1" Grid.Row="0" Content="{Binding Path=Cell46,Converter={StaticResource P2S}}" />
-            <Button Grid.Column="2" Grid.Row="0" Content="{Binding Path=Cell56,Converter={StaticResource P2S}}"/>
+            <Button Grid.Column="0" Grid.Row="0" Content="{Binding Path=Cell36,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell36}"/>
+            <Button Grid.Column="1" Grid.Row="0" Content="{Binding Path=Cell46,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell46}" />
+            <Button Grid.Column="2" Grid.Row="0" Content="{Binding Path=Cell56,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell56}"/>
 
-            <Button Grid.Column="0" Grid.Row="1" Content="{Binding Path=Cell37,Converter={StaticResource P2S}}"/>
-            <Button Grid.Column="1" Grid.Row="1" Content="{Binding Path=Cell47,Converter={StaticResource P2S}}"/>
-            <Button Grid.Column="2" Grid.Row="1" Content="{Binding Path=Cell57,Converter={StaticResource P2S}}" />
+            <Button Grid.Column="0" Grid.Row="1" Content="{Binding Path=Cell37,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell37}"/>
+            <Button Grid.Column="1" Grid.Row="1" Content="{Binding Path=Cell47,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell47}"/>
+            <Button Grid.Column="2" Grid.Row="1" Content="{Binding Path=Cell57,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell57}" />
 
-            <Button Grid.Column="0" Grid.Row="2" Content="{Binding Path=Cell38,Converter={StaticResource P2S}}"/>
-            <Button Grid.Column="1" Grid.Row="2" Content="{Binding Path=Cell48,Converter={StaticResource P2S}}" />
-            <Button Grid.Column="2" Grid.Row="2" Content="{Binding Path=Cell58,Converter={StaticResource P2S}}" />
+            <Button Grid.Column="0" Grid.Row="2" Content="{Binding Path=Cell38,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell38}"/>
+            <Button Grid.Column="1" Grid.Row="2" Content="{Binding Path=Cell48,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell48}" />
+            <Button Grid.Column="2" Grid.Row="2" Content="{Binding Path=Cell58,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell58}" />
 
             </Grid>
 
@@ -398,17 +398,17 @@
             <Rectangle Style="{StaticResource VerticalBars}" Grid.Column="1"/>
             <Rectangle Style="{StaticResource VerticalBars}" Grid.Column="2"/>
 
-            <Button Grid.Column="0" Grid.Row="0" Content="{Binding Path=Cell66,Converter={StaticResource P2S}}"/>
-            <Button Grid.Column="1" Grid.Row="0" Content="{Binding Path=Cell76,Converter={StaticResource P2S}}" />
-            <Button Grid.Column="2" Grid.Row="0" Content="{Binding Path=Cell86,Converter={StaticResource P2S}}"/>
+            <Button Grid.Column="0" Grid.Row="0" Content="{Binding Path=Cell66,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell66}"/>
+            <Button Grid.Column="1" Grid.Row="0" Content="{Binding Path=Cell76,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell76}" />
+            <Button Grid.Column="2" Grid.Row="0" Content="{Binding Path=Cell86,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell86}"/>
 
-            <Button Grid.Column="0" Grid.Row="1" Content="{Binding Path=Cell67,Converter={StaticResource P2S}}"/>
-            <Button Grid.Column="1" Grid.Row="1" Content="{Binding Path=Cell77,Converter={StaticResource P2S}}"/>
-            <Button Grid.Column="2" Grid.Row="1" Content="{Binding Path=Cell87,Converter={StaticResource P2S}}" />
+            <Button Grid.Column="0" Grid.Row="1" Content="{Binding Path=Cell67,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell67}"/>
+            <Button Grid.Column="1" Grid.Row="1" Content="{Binding Path=Cell77,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell77}"/>
+            <Button Grid.Column="2" Grid.Row="1" Content="{Binding Path=Cell87,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell87}" />
 
-            <Button Grid.Column="0" Grid.Row="2" Content="{Binding Path=Cell68,Converter={StaticResource P2S}}"/>
-            <Button Grid.Column="1" Grid.Row="2" Content="{Binding Path=Cell78,Converter={StaticResource P2S}}" />
-            <Button Grid.Column="2" Grid.Row="2" Content="{Binding Path=Cell88,Converter={StaticResource P2S}}" />
+            <Button Grid.Column="0" Grid.Row="2" Content="{Binding Path=Cell68,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell68}"/>
+            <Button Grid.Column="1" Grid.Row="2" Content="{Binding Path=Cell78,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell78}" />
+            <Button Grid.Column="2" Grid.Row="2" Content="{Binding Path=Cell88,Converter={StaticResource P2S}}" Command="{Binding Path=CommandCell88}" />
 
             </Grid>
 

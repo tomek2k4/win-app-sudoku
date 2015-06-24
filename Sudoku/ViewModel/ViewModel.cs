@@ -25,11 +25,35 @@ namespace Sudoku.ViewModel
             //_cells = new GameModel(null);
             _cells = GenerateNewBoard();
 
-            CellClass item = Plansza[3, 0];
-
+            for (int i = 0; i < 9; ++i)
+            {
+                for (int j = 0; j < 9; ++j)
+                {
+                    var x = i;
+                    var y = j;
+                    m_Komendy[i,j] = new RelayCommand(
+                        () => {  IncrementUserAnswer( Plansza[x,y]); FirePropertyChanged("Cell"+x.ToString()+y.ToString()); },
+                        () => { return Plansza[x, y].Answer == 0; }
+                        );
+                }
+            }
         }
 
         #endregion
+
+        public void IncrementUserAnswer(CellClass cell)
+        {
+            if(cell.UserAnswer == 9)
+            {
+                cell.UserAnswer = 1;
+            }
+            else
+            {
+                cell.UserAnswer++;
+            }
+        }
+
+
 
         private CellClass[,] GenerateNewBoard()
         {
@@ -41,7 +65,7 @@ namespace Sudoku.ViewModel
             Int32 index = 0;
             do
             {
-                CellClass item = new CellClass(index, (index%9)+1 ); // Create a new element with answer 1
+                CellClass item = new CellClass(index, 0 ); // Create a new element with answer 1
                 item.UserAnswer = item.Region + 1;
                 cellsList[index] = item;
                 index++;
@@ -67,6 +91,19 @@ namespace Sudoku.ViewModel
             }
         }
 
+        private RelayCommand[,] m_Komendy = new RelayCommand[9, 9];
+
+        public RelayCommand[,] Komendy
+        {
+            get
+            {
+                return m_Komendy;
+            }
+        }
+
+
+
+
         #region . Properties: Cell Contents .
 
         // Property pointers to individual cells of the puzzle.
@@ -76,63 +113,68 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[0, 0];
+                return Plansza[0, 0];
             }
         }
+
         public CellClass Cell10
         {
             get
             {
-                return _cells[1, 0];
+                return Plansza[1, 0];
             }
         }
+
         public CellClass Cell20
         {
             get
             {
-                return _cells[2, 0];
+                return Plansza[2, 0];
             }
         }
+
+
+
         public CellClass Cell30
         {
             get
             {
-                return _cells[3, 0];
+                return Plansza[3, 0];
             }
         }
         public CellClass Cell40
         {
             get
             {
-                return _cells[4, 0];
+                return Plansza[4, 0];
             }
         }
         public CellClass Cell50
         {
             get
             {
-                return _cells[5, 0];
+                return Plansza[5, 0];
             }
         }
         public CellClass Cell60
         {
             get
             {
-                return _cells[6, 0];
+                return Plansza[6, 0];
             }
         }
         public CellClass Cell70
         {
             get
             {
-                return _cells[7, 0];
+                return Plansza[7, 0];
             }
         }
         public CellClass Cell80
         {
             get
             {
-                return _cells[8, 0];
+                return Plansza[8, 0];
             }
         }
 
@@ -143,7 +185,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[0, 1];
+                return Plansza[0, 1];
             }
         }
 
@@ -151,7 +193,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[1, 1];
+                return Plansza[1, 1];
             }
         }
 
@@ -159,7 +201,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[2, 1];
+                return Plansza[2, 1];
             }
         }
 
@@ -167,7 +209,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[3, 1];
+                return Plansza[3, 1];
             }
         }
 
@@ -175,7 +217,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[4, 1];
+                return Plansza[4, 1];
             }
         }
 
@@ -183,7 +225,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[5, 1];
+                return Plansza[5, 1];
             }
         }
 
@@ -191,7 +233,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[6, 1];
+                return Plansza[6, 1];
             }
         }
 
@@ -199,7 +241,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[7, 1];
+                return Plansza[7, 1];
             }
         }
 
@@ -207,7 +249,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[8, 1];
+                return Plansza[8, 1];
             }
         }
 
@@ -218,7 +260,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[0, 2];
+                return Plansza[0, 2];
             }
         }
 
@@ -226,7 +268,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[1, 2];
+                return Plansza[1, 2];
             }
         }
 
@@ -234,7 +276,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[2, 2];
+                return Plansza[2, 2];
             }
         }
 
@@ -242,7 +284,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[3, 2];
+                return Plansza[3, 2];
             }
         }
 
@@ -250,7 +292,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[4, 2];
+                return Plansza[4, 2];
             }
         }
 
@@ -258,7 +300,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[5, 2];
+                return Plansza[5, 2];
             }
         }
 
@@ -266,7 +308,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[6, 2];
+                return Plansza[6, 2];
             }
         }
 
@@ -274,7 +316,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[7, 2];
+                return Plansza[7, 2];
             }
         }
 
@@ -282,7 +324,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[8, 2];
+                return Plansza[8, 2];
             }
         }
 
@@ -293,7 +335,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[0, 3];
+                return Plansza[0, 3];
             }
         }
 
@@ -301,7 +343,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[1, 3];
+                return Plansza[1, 3];
             }
         }
 
@@ -309,7 +351,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[2, 3];
+                return Plansza[2, 3];
             }
         }
 
@@ -317,7 +359,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[3, 3];
+                return Plansza[3, 3];
             }
         }
 
@@ -325,7 +367,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[4, 3];
+                return Plansza[4, 3];
             }
         }
 
@@ -333,7 +375,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[5, 3];
+                return Plansza[5, 3];
             }
         }
 
@@ -341,7 +383,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[6, 3];
+                return Plansza[6, 3];
             }
         }
 
@@ -349,7 +391,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[7, 3];
+                return Plansza[7, 3];
             }
         }
 
@@ -357,7 +399,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[8, 3];
+                return Plansza[8, 3];
             }
         }
 
@@ -368,7 +410,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[0, 4];
+                return Plansza[0, 4];
             }
         }
 
@@ -376,7 +418,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[1, 4];
+                return Plansza[1, 4];
             }
         }
 
@@ -384,7 +426,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[2, 4];
+                return Plansza[2, 4];
             }
         }
 
@@ -392,7 +434,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[3, 4];
+                return Plansza[3, 4];
             }
         }
 
@@ -400,7 +442,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[4, 4];
+                return Plansza[4, 4];
             }
         }
 
@@ -408,7 +450,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[5, 4];
+                return Plansza[5, 4];
             }
         }
 
@@ -416,7 +458,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[6, 4];
+                return Plansza[6, 4];
             }
         }
 
@@ -424,7 +466,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[7, 4];
+                return Plansza[7, 4];
             }
         }
 
@@ -432,7 +474,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[8, 4];
+                return Plansza[8, 4];
             }
         }
 
@@ -443,7 +485,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[0, 5];
+                return Plansza[0, 5];
             }
         }
 
@@ -451,7 +493,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[1, 5];
+                return Plansza[1, 5];
             }
         }
 
@@ -459,7 +501,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[2, 5];
+                return Plansza[2, 5];
             }
         }
 
@@ -467,7 +509,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[3, 5];
+                return Plansza[3, 5];
             }
         }
 
@@ -475,7 +517,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[4, 5];
+                return Plansza[4, 5];
             }
         }
 
@@ -483,7 +525,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[5, 5];
+                return Plansza[5, 5];
             }
         }
 
@@ -491,7 +533,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[6, 5];
+                return Plansza[6, 5];
             }
         }
 
@@ -499,7 +541,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[7, 5];
+                return Plansza[7, 5];
             }
         }
 
@@ -507,7 +549,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[8, 5];
+                return Plansza[8, 5];
             }
         }
 
@@ -518,7 +560,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[0, 6];
+                return Plansza[0, 6];
             }
         }
 
@@ -526,7 +568,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[1, 6];
+                return Plansza[1, 6];
             }
         }
 
@@ -534,7 +576,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[2, 6];
+                return Plansza[2, 6];
             }
         }
 
@@ -542,7 +584,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[3, 6];
+                return Plansza[3, 6];
             }
         }
 
@@ -550,7 +592,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[4, 6];
+                return Plansza[4, 6];
             }
         }
 
@@ -558,7 +600,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[5, 6];
+                return Plansza[5, 6];
             }
         }
 
@@ -566,7 +608,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[6, 6];
+                return Plansza[6, 6];
             }
         }
 
@@ -574,7 +616,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[7, 6];
+                return Plansza[7, 6];
             }
         }
 
@@ -582,7 +624,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[8, 6];
+                return Plansza[8, 6];
             }
         }
 
@@ -593,7 +635,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[0, 7];
+                return Plansza[0, 7];
             }
         }
 
@@ -601,7 +643,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[1, 7];
+                return Plansza[1, 7];
             }
         }
 
@@ -609,7 +651,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[2, 7];
+                return Plansza[2, 7];
             }
         }
 
@@ -617,7 +659,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[3, 7];
+                return Plansza[3, 7];
             }
         }
 
@@ -625,7 +667,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[4, 7];
+                return Plansza[4, 7];
             }
         }
 
@@ -633,7 +675,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[5, 7];
+                return Plansza[5, 7];
             }
         }
 
@@ -641,7 +683,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[6, 7];
+                return Plansza[6, 7];
             }
         }
 
@@ -649,7 +691,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[7, 7];
+                return Plansza[7, 7];
             }
         }
 
@@ -657,7 +699,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[8, 7];
+                return Plansza[8, 7];
             }
         }
 
@@ -668,7 +710,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[0, 8];
+                return Plansza[0, 8];
             }
         }
 
@@ -676,7 +718,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[1, 8];
+                return Plansza[1, 8];
             }
         }
 
@@ -684,7 +726,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[2, 8];
+                return Plansza[2, 8];
             }
         }
 
@@ -692,7 +734,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[3, 8];
+                return Plansza[3, 8];
             }
         }
 
@@ -700,7 +742,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[4, 8];
+                return Plansza[4, 8];
             }
         }
 
@@ -708,7 +750,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[5, 8];
+                return Plansza[5, 8];
             }
         }
 
@@ -716,7 +758,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[6, 8];
+                return Plansza[6, 8];
             }
         }
 
@@ -724,7 +766,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[7, 8];
+                return Plansza[7, 8];
             }
         }
 
@@ -732,13 +774,696 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[8, 8];
+                return Plansza[8, 8];
             }
         }
 
         #endregion
 
         #endregion
+
+
+        #region . Properties: Cell Commands .
+
+        // Property pointers to individual cells of the puzzle.
+
+        #region . Properties: Row 1 Cells .
+        public RelayCommand CommandCell00
+        {
+            get
+            {
+                return Komendy[0, 0];
+            }
+        }
+
+        public RelayCommand CommandCell10
+        {
+            get
+            {
+                return Komendy[1, 0];
+            }
+        }
+
+        public RelayCommand CommandCell20
+        {
+            get
+            {
+                return Komendy[2, 0];
+            }
+        }
+
+
+
+        public RelayCommand CommandCell30
+        {
+            get
+            {
+                return Komendy[3, 0];
+            }
+        }
+        public RelayCommand CommandCell40
+        {
+            get
+            {
+                return Komendy[4, 0];
+            }
+        }
+        public RelayCommand CommandCell50
+        {
+            get
+            {
+                return Komendy[5, 0];
+            }
+        }
+        public RelayCommand CommandCell60
+        {
+            get
+            {
+                return Komendy[6, 0];
+            }
+        }
+        public RelayCommand CommandCell70
+        {
+            get
+            {
+                return Komendy[7, 0];
+            }
+        }
+        public RelayCommand CommandCell80
+        {
+            get
+            {
+                return Komendy[8, 0];
+            }
+        }
+
+        #endregion
+
+        #region . Properties: Row 2 Cells .
+        public RelayCommand CommandCell01
+        {
+            get
+            {
+                return Komendy[0, 1];
+            }
+        }
+
+        public RelayCommand CommandCell11
+        {
+            get
+            {
+                return Komendy[1, 1];
+            }
+        }
+
+        public RelayCommand CommandCell21
+        {
+            get
+            {
+                return Komendy[2, 1];
+            }
+        }
+
+        public RelayCommand CommandCell31
+        {
+            get
+            {
+                return Komendy[3, 1];
+            }
+        }
+
+        public RelayCommand CommandCell41
+        {
+            get
+            {
+                return Komendy[4, 1];
+            }
+        }
+
+        public RelayCommand CommandCell51
+        {
+            get
+            {
+                return Komendy[5, 1];
+            }
+        }
+
+        public RelayCommand CommandCell61
+        {
+            get
+            {
+                return Komendy[6, 1];
+            }
+        }
+
+        public RelayCommand CommandCell71
+        {
+            get
+            {
+                return Komendy[7, 1];
+            }
+        }
+
+        public RelayCommand CommandCell81
+        {
+            get
+            {
+                return Komendy[8, 1];
+            }
+        }
+
+        #endregion
+
+        #region . Properties: Row 3 Cells .
+        public RelayCommand CommandCell02
+        {
+            get
+            {
+                return Komendy[0, 2];
+            }
+        }
+
+        public RelayCommand CommandCell12
+        {
+            get
+            {
+                return Komendy[1, 2];
+            }
+        }
+
+        public RelayCommand CommandCell22
+        {
+            get
+            {
+                return Komendy[2, 2];
+            }
+        }
+
+        public RelayCommand CommandCell32
+        {
+            get
+            {
+                return Komendy[3, 2];
+            }
+        }
+
+        public RelayCommand CommandCell42
+        {
+            get
+            {
+                return Komendy[4, 2];
+            }
+        }
+
+        public RelayCommand CommandCell52
+        {
+            get
+            {
+                return Komendy[5, 2];
+            }
+        }
+
+        public RelayCommand CommandCell62
+        {
+            get
+            {
+                return Komendy[6, 2];
+            }
+        }
+
+        public RelayCommand CommandCell72
+        {
+            get
+            {
+                return Komendy[7, 2];
+            }
+        }
+
+        public RelayCommand CommandCell82
+        {
+            get
+            {
+                return Komendy[8, 2];
+            }
+        }
+
+        #endregion
+
+        #region . Properties: Row 4 Cells .
+        public RelayCommand CommandCell03
+        {
+            get
+            {
+                return Komendy[0, 3];
+            }
+        }
+
+        public RelayCommand CommandCell13
+        {
+            get
+            {
+                return Komendy[1, 3];
+            }
+        }
+
+        public RelayCommand CommandCell23
+        {
+            get
+            {
+                return Komendy[2, 3];
+            }
+        }
+
+        public RelayCommand CommandCell33
+        {
+            get
+            {
+                return Komendy[3, 3];
+            }
+        }
+
+        public RelayCommand CommandCell43
+        {
+            get
+            {
+                return Komendy[4, 3];
+            }
+        }
+
+        public RelayCommand CommandCell53
+        {
+            get
+            {
+                return Komendy[5, 3];
+            }
+        }
+
+        public RelayCommand CommandCell63
+        {
+            get
+            {
+                return Komendy[6, 3];
+            }
+        }
+
+        public RelayCommand CommandCell73
+        {
+            get
+            {
+                return Komendy[7, 3];
+            }
+        }
+
+        public RelayCommand CommandCell83
+        {
+            get
+            {
+                return Komendy[8, 3];
+            }
+        }
+
+        #endregion
+
+        #region . Properties: Row 5 Cells .
+        public RelayCommand CommandCell04
+        {
+            get
+            {
+                return Komendy[0, 4];
+            }
+        }
+
+        public RelayCommand CommandCell14
+        {
+            get
+            {
+                return Komendy[1, 4];
+            }
+        }
+
+        public RelayCommand CommandCell24
+        {
+            get
+            {
+                return Komendy[2, 4];
+            }
+        }
+
+        public RelayCommand CommandCell34
+        {
+            get
+            {
+                return Komendy[3, 4];
+            }
+        }
+
+        public RelayCommand CommandCell44
+        {
+            get
+            {
+                return Komendy[4, 4];
+            }
+        }
+
+        public RelayCommand CommandCell54
+        {
+            get
+            {
+                return Komendy[5, 4];
+            }
+        }
+
+        public RelayCommand CommandCell64
+        {
+            get
+            {
+                return Komendy[6, 4];
+            }
+        }
+
+        public RelayCommand CommandCell74
+        {
+            get
+            {
+                return Komendy[7, 4];
+            }
+        }
+
+        public RelayCommand CommandCell84
+        {
+            get
+            {
+                return Komendy[8, 4];
+            }
+        }
+
+        #endregion
+
+        #region . Properties: Row 6 Cells .
+        public RelayCommand CommandCell05
+        {
+            get
+            {
+                return Komendy[0, 5];
+            }
+        }
+
+        public RelayCommand CommandCell15
+        {
+            get
+            {
+                return Komendy[1, 5];
+            }
+        }
+
+        public RelayCommand CommandCell25
+        {
+            get
+            {
+                return Komendy[2, 5];
+            }
+        }
+
+        public RelayCommand CommandCell35
+        {
+            get
+            {
+                return Komendy[3, 5];
+            }
+        }
+
+        public RelayCommand CommandCell45
+        {
+            get
+            {
+                return Komendy[4, 5];
+            }
+        }
+
+        public RelayCommand CommandCell55
+        {
+            get
+            {
+                return Komendy[5, 5];
+            }
+        }
+
+        public RelayCommand CommandCell65
+        {
+            get
+            {
+                return Komendy[6, 5];
+            }
+        }
+
+        public RelayCommand CommandCell75
+        {
+            get
+            {
+                return Komendy[7, 5];
+            }
+        }
+
+        public RelayCommand CommandCell85
+        {
+            get
+            {
+                return Komendy[8, 5];
+            }
+        }
+
+        #endregion
+
+        #region . Properties: Row 7 Cells .
+        public RelayCommand CommandCell06
+        {
+            get
+            {
+                return Komendy[0, 6];
+            }
+        }
+
+        public RelayCommand CommandCell16
+        {
+            get
+            {
+                return Komendy[1, 6];
+            }
+        }
+
+        public RelayCommand CommandCell26
+        {
+            get
+            {
+                return Komendy[2, 6];
+            }
+        }
+
+        public RelayCommand CommandCell36
+        {
+            get
+            {
+                return Komendy[3, 6];
+            }
+        }
+
+        public RelayCommand CommandCell46
+        {
+            get
+            {
+                return Komendy[4, 6];
+            }
+        }
+
+        public RelayCommand CommandCell56
+        {
+            get
+            {
+                return Komendy[5, 6];
+            }
+        }
+
+        public RelayCommand CommandCell66
+        {
+            get
+            {
+                return Komendy[6, 6];
+            }
+        }
+
+        public RelayCommand CommandCell76
+        {
+            get
+            {
+                return Komendy[7, 6];
+            }
+        }
+
+        public RelayCommand CommandCell86
+        {
+            get
+            {
+                return Komendy[8, 6];
+            }
+        }
+
+        #endregion
+
+        #region . Properties: Row 8 Cells .
+        public RelayCommand CommandCell07
+        {
+            get
+            {
+                return Komendy[0, 7];
+            }
+        }
+
+        public RelayCommand CommandCell17
+        {
+            get
+            {
+                return Komendy[1, 7];
+            }
+        }
+
+        public RelayCommand CommandCell27
+        {
+            get
+            {
+                return Komendy[2, 7];
+            }
+        }
+
+        public RelayCommand CommandCell37
+        {
+            get
+            {
+                return Komendy[3, 7];
+            }
+        }
+
+        public RelayCommand CommandCell47
+        {
+            get
+            {
+                return Komendy[4, 7];
+            }
+        }
+
+        public RelayCommand CommandCell57
+        {
+            get
+            {
+                return Komendy[5, 7];
+            }
+        }
+
+        public RelayCommand CommandCell67
+        {
+            get
+            {
+                return Komendy[6, 7];
+            }
+        }
+
+        public RelayCommand CommandCell77
+        {
+            get
+            {
+                return Komendy[7, 7];
+            }
+        }
+
+        public RelayCommand CommandCell87
+        {
+            get
+            {
+                return Komendy[8, 7];
+            }
+        }
+
+        #endregion
+
+        #region . Properties: Row 9 Cells .
+        public RelayCommand CommandCell08
+        {
+            get
+            {
+                return Komendy[0, 8];
+            }
+        }
+
+        public RelayCommand CommandCell18
+        {
+            get
+            {
+                return Komendy[1, 8];
+            }
+        }
+
+        public RelayCommand CommandCell28
+        {
+            get
+            {
+                return Komendy[2, 8];
+            }
+        }
+
+        public RelayCommand CommandCell38
+        {
+            get
+            {
+                return Komendy[3, 8];
+            }
+        }
+
+        public RelayCommand CommandCell48
+        {
+            get
+            {
+                return Komendy[4, 8];
+            }
+        }
+
+        public RelayCommand CommandCell58
+        {
+            get
+            {
+                return Komendy[5, 8];
+            }
+        }
+
+        public RelayCommand CommandCell68
+        {
+            get
+            {
+                return Komendy[6, 8];
+            }
+        }
+
+        public RelayCommand CommandCell78
+        {
+            get
+            {
+                return Komendy[7, 8];
+            }
+        }
+
+        public RelayCommand CommandCell88
+        {
+            get
+            {
+                return Komendy[8, 8];
+            }
+        }
+
+        #endregion
+
+        #endregion
+
+
+
+
 
 
 
@@ -758,15 +1483,7 @@ namespace Sudoku.ViewModel
     //        }
     //    }
 
-    //    private RelayCommand[][] m_Komendy = new RelayCommand[3][];
 
-    //    public RelayCommand[][] Komendy
-    //    {
-    //        get
-    //        {
-    //            return m_Komendy;
-    //        }
-    //    }
 
     //    private Pole nextSymbol = Pole.Krzyzyk;
 
