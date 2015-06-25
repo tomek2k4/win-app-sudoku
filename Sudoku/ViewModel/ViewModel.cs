@@ -25,6 +25,9 @@ namespace Sudoku.ViewModel
             Debug.WriteLine("Initialize View Model ...");
             //_cells = new GameModel(null);
             _cells = GenerateNewBoard();
+            _cells[0, 0].CellState = CellStateEnum.Answer;
+            _cells[0, 0].Answer = 5;
+
 
             for (int i = 0; i < 9; ++i)
             {
@@ -46,7 +49,15 @@ namespace Sudoku.ViewModel
         {
             if(cell.UserAnswer == 9)
             {
-                cell.CellState = CellStateEnum.Blank;
+                if(cell.CellState==CellStateEnum.Blank)
+                {
+                    cell.CellState = CellStateEnum.UserInputIncorrect;
+                    cell.UserAnswer = 1;
+                }
+                else
+                {
+                    cell.CellState = CellStateEnum.Blank;
+                }
             }
             else
             {

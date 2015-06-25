@@ -112,7 +112,7 @@ namespace Sudoku.Model
         /// <summary>
         /// Gets this cell's answer.
         /// </summary>
-        public Int32 Answer { get; private set; }
+        public Int32 Answer { get; set; }
         /// <summary>
         /// Gets a value indicating whether or not the initial state of this cell was set properly or not.
         /// </summary>
