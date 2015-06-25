@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sudoku.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,19 +30,50 @@ namespace Sudoku.Model
 
         #endregion
 
-        #region Properties
+        #region . Properties .
 
+        #region . Properties: Public Read-only .
+
+        /// <summary>
+        /// Indexer for the GameModel class.
+        /// </summary>
+        /// <param name="col">Column of cell to return.</param>
+        /// <param name="row">Row of cell to return.</param>
+        /// <returns>Returns the CellClass member at the specified column and row.</returns>
+        internal CellClass this[Int32 col, Int32 row]
+        {
+            get
+            {
+                if ((_cells != null) && (Common.IsValidIndex(col, row)))    // If we have cells and the inputs are valid.
+                    return _cells[col, row];                                // Then return the specified cell.
+                return null;                                                // Otherwise, return null.
+            }
+        }
+        /// <summary>
+        /// Gets a flag indicating whether or not the puzzle is complete.
+        /// </summary>
+        internal bool GameComplete
+        {
+            get
+            {
+                return (EmptyCount == 0);                                   // If there are no more empty cells, then the puzzle is done.
+            }
+        }
         /// <summary>
         /// Gets a list of cells of the puzzle that is currently playing.
         /// </summary>
         internal List<CellClass> CellList { get; private set; }
 
+        #endregion
+
+        #region . Properties: Public Read/Write .
 
         /// <summary>
         /// Gets or sets the number of empty cells left in the puzzle.
         /// </summary>
         internal Int32 EmptyCount { get; set; }
 
+        #endregion
 
         #endregion
 

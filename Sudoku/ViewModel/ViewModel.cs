@@ -16,53 +16,64 @@ namespace Sudoku.ViewModel
 {
     public class ViewModelClass : INotifyPropertyChanged
     {
-        private CellClass[,] _cells;
+        private GameModel _model;
         private RelayCommand[,] _komendy = new RelayCommand[9, 9];
         #region . Constructors .
 
         public ViewModelClass()
         {
             Debug.WriteLine("Initialize View Model ...");
-            //_cells = new GameModel(null);
-            _cells = GenerateNewBoard();
-            _cells[0, 0].CellState = CellStateEnum.Answer;
-            _cells[0, 0].Answer = 5;
+            
+            CellClass[,] cells = GenerateNewBoard();
+            cells[0, 0].CellState = CellStateEnum.Answer;
+            cells[0, 0].Answer = 5;
 
-
+            _model = new GameModel(cells);
             for (int i = 0; i < 9; ++i)
             {
                 for (int j = 0; j < 9; ++j)
                 {
-                    var x = i;
-                    var y = j;
-                    _komendy[i,j] = new RelayCommand(
-                        () => {  IncrementUserAnswer( _cells[x,y]); FirePropertyChanged("Cell"+x.ToString()+y.ToString()); },
-                        () => { return _cells[x, y].Answer == 0; }
+                    var col = j;
+                    var row = i;
+                    _komendy[j,i] = new RelayCommand(
+                        () => { ProcessCellClick(col, row); FirePropertyChanged("Cell" + col.ToString() + row.ToString()); },
+                        () => { return _model[col, row].Answer == 0; }
                         );
                 }
             }
         }
 
         #endregion
-
-        public void IncrementUserAnswer(CellClass cell)
+        private void ProcessCellClick(Int32 col, Int32 row)
         {
-            if(cell.UserAnswer == 9)
+            if (IsValidGame() && (_model[col, row].CellState != CellStateEnum.Answer))  // Is a game in progress and the cell is in the answer state
+                IncrementUserAnswer(col, row);  // Yes, display the number pad and process it
+        }
+
+        private bool IsValidGame()
+        {   // Return true if the there is a game in progress and the model is valid
+            return ((_model != null) && (_model.CellList != null));
+        }
+
+
+        private void IncrementUserAnswer(Int32 col, Int32 row)
+        {
+            if(_model[col,row].UserAnswer == 9)
             {
-                if(cell.CellState==CellStateEnum.Blank)
+                if (_model[col, row].CellState == CellStateEnum.Blank)
                 {
-                    cell.CellState = CellStateEnum.UserInputIncorrect;
-                    cell.UserAnswer = 1;
+                    _model[col, row].CellState = CellStateEnum.UserInputIncorrect;
+                    _model[col, row].UserAnswer = 1;
                 }
                 else
                 {
-                    cell.CellState = CellStateEnum.Blank;
+                    _model[col, row].CellState = CellStateEnum.Blank;
                 }
             }
             else
             {
-                cell.CellState = CellStateEnum.UserInputIncorrect;
-                cell.UserAnswer++;
+                _model[col, row].CellState = CellStateEnum.UserInputIncorrect;
+                _model[col, row].UserAnswer++;
             }
         }
 
@@ -72,7 +83,7 @@ namespace Sudoku.ViewModel
         {
             CellClass[] cellsList = new CellClass[81];
             for (Int32 i = 0; i < 81; i++)                          // Loop through the array
-                cellsList[i] = null;  
+                cellsList[i] = null;
 
 
             Int32 index = 0;
@@ -82,7 +93,7 @@ namespace Sudoku.ViewModel
                 //item.UserAnswer = item.Region + 1;
                 cellsList[index] = item;
                 index++;
-            } while (index<81);
+            } while (index < 81);
 
             return TransferGameToGrid(cellsList);
         }
@@ -104,7 +115,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[0, 0];
+                return _model[0, 0];
             }
         }
 
@@ -112,7 +123,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[1, 0];
+                return _model[1, 0];
             }
         }
 
@@ -120,7 +131,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[2, 0];
+                return _model[2, 0];
             }
         }
 
@@ -130,42 +141,42 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[3, 0];
+                return _model[3, 0];
             }
         }
         public CellClass Cell40
         {
             get
             {
-                return _cells[4, 0];
+                return _model[4, 0];
             }
         }
         public CellClass Cell50
         {
             get
             {
-                return _cells[5, 0];
+                return _model[5, 0];
             }
         }
         public CellClass Cell60
         {
             get
             {
-                return _cells[6, 0];
+                return _model[6, 0];
             }
         }
         public CellClass Cell70
         {
             get
             {
-                return _cells[7, 0];
+                return _model[7, 0];
             }
         }
         public CellClass Cell80
         {
             get
             {
-                return _cells[8, 0];
+                return _model[8, 0];
             }
         }
 
@@ -176,7 +187,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[0, 1];
+                return _model[0, 1];
             }
         }
 
@@ -184,7 +195,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[1, 1];
+                return _model[1, 1];
             }
         }
 
@@ -192,7 +203,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[2, 1];
+                return _model[2, 1];
             }
         }
 
@@ -200,7 +211,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[3, 1];
+                return _model[3, 1];
             }
         }
 
@@ -208,7 +219,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[4, 1];
+                return _model[4, 1];
             }
         }
 
@@ -216,7 +227,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[5, 1];
+                return _model[5, 1];
             }
         }
 
@@ -224,7 +235,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[6, 1];
+                return _model[6, 1];
             }
         }
 
@@ -232,7 +243,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[7, 1];
+                return _model[7, 1];
             }
         }
 
@@ -240,7 +251,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[8, 1];
+                return _model[8, 1];
             }
         }
 
@@ -251,7 +262,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[0, 2];
+                return _model[0, 2];
             }
         }
 
@@ -259,7 +270,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[1, 2];
+                return _model[1, 2];
             }
         }
 
@@ -267,7 +278,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[2, 2];
+                return _model[2, 2];
             }
         }
 
@@ -275,7 +286,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[3, 2];
+                return _model[3, 2];
             }
         }
 
@@ -283,7 +294,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[4, 2];
+                return _model[4, 2];
             }
         }
 
@@ -291,7 +302,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[5, 2];
+                return _model[5, 2];
             }
         }
 
@@ -299,7 +310,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[6, 2];
+                return _model[6, 2];
             }
         }
 
@@ -307,7 +318,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[7, 2];
+                return _model[7, 2];
             }
         }
 
@@ -315,7 +326,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[8, 2];
+                return _model[8, 2];
             }
         }
 
@@ -326,7 +337,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[0, 3];
+                return _model[0, 3];
             }
         }
 
@@ -334,7 +345,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[1, 3];
+                return _model[1, 3];
             }
         }
 
@@ -342,7 +353,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[2, 3];
+                return _model[2, 3];
             }
         }
 
@@ -350,7 +361,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[3, 3];
+                return _model[3, 3];
             }
         }
 
@@ -358,7 +369,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[4, 3];
+                return _model[4, 3];
             }
         }
 
@@ -366,7 +377,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[5, 3];
+                return _model[5, 3];
             }
         }
 
@@ -374,7 +385,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[6, 3];
+                return _model[6, 3];
             }
         }
 
@@ -382,7 +393,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[7, 3];
+                return _model[7, 3];
             }
         }
 
@@ -390,7 +401,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[8, 3];
+                return _model[8, 3];
             }
         }
 
@@ -401,7 +412,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[0, 4];
+                return _model[0, 4];
             }
         }
 
@@ -409,7 +420,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[1, 4];
+                return _model[1, 4];
             }
         }
 
@@ -417,7 +428,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[2, 4];
+                return _model[2, 4];
             }
         }
 
@@ -425,7 +436,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[3, 4];
+                return _model[3, 4];
             }
         }
 
@@ -433,7 +444,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[4, 4];
+                return _model[4, 4];
             }
         }
 
@@ -441,7 +452,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[5, 4];
+                return _model[5, 4];
             }
         }
 
@@ -449,7 +460,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[6, 4];
+                return _model[6, 4];
             }
         }
 
@@ -457,7 +468,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[7, 4];
+                return _model[7, 4];
             }
         }
 
@@ -465,7 +476,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[8, 4];
+                return _model[8, 4];
             }
         }
 
@@ -476,7 +487,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[0, 5];
+                return _model[0, 5];
             }
         }
 
@@ -484,7 +495,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[1, 5];
+                return _model[1, 5];
             }
         }
 
@@ -492,7 +503,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[2, 5];
+                return _model[2, 5];
             }
         }
 
@@ -500,7 +511,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[3, 5];
+                return _model[3, 5];
             }
         }
 
@@ -508,7 +519,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[4, 5];
+                return _model[4, 5];
             }
         }
 
@@ -516,7 +527,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[5, 5];
+                return _model[5, 5];
             }
         }
 
@@ -524,7 +535,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[6, 5];
+                return _model[6, 5];
             }
         }
 
@@ -532,7 +543,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[7, 5];
+                return _model[7, 5];
             }
         }
 
@@ -540,7 +551,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[8, 5];
+                return _model[8, 5];
             }
         }
 
@@ -551,7 +562,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[0, 6];
+                return _model[0, 6];
             }
         }
 
@@ -559,7 +570,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[1, 6];
+                return _model[1, 6];
             }
         }
 
@@ -567,7 +578,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[2, 6];
+                return _model[2, 6];
             }
         }
 
@@ -575,7 +586,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[3, 6];
+                return _model[3, 6];
             }
         }
 
@@ -583,7 +594,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[4, 6];
+                return _model[4, 6];
             }
         }
 
@@ -591,7 +602,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[5, 6];
+                return _model[5, 6];
             }
         }
 
@@ -599,7 +610,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[6, 6];
+                return _model[6, 6];
             }
         }
 
@@ -607,7 +618,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[7, 6];
+                return _model[7, 6];
             }
         }
 
@@ -615,7 +626,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[8, 6];
+                return _model[8, 6];
             }
         }
 
@@ -626,7 +637,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[0, 7];
+                return _model[0, 7];
             }
         }
 
@@ -634,7 +645,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[1, 7];
+                return _model[1, 7];
             }
         }
 
@@ -642,7 +653,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[2, 7];
+                return _model[2, 7];
             }
         }
 
@@ -650,7 +661,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[3, 7];
+                return _model[3, 7];
             }
         }
 
@@ -658,7 +669,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[4, 7];
+                return _model[4, 7];
             }
         }
 
@@ -666,7 +677,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[5, 7];
+                return _model[5, 7];
             }
         }
 
@@ -674,7 +685,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[6, 7];
+                return _model[6, 7];
             }
         }
 
@@ -682,7 +693,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[7, 7];
+                return _model[7, 7];
             }
         }
 
@@ -690,7 +701,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[8, 7];
+                return _model[8, 7];
             }
         }
 
@@ -701,7 +712,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[0, 8];
+                return _model[0, 8];
             }
         }
 
@@ -709,7 +720,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[1, 8];
+                return _model[1, 8];
             }
         }
 
@@ -717,7 +728,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[2, 8];
+                return _model[2, 8];
             }
         }
 
@@ -725,7 +736,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[3, 8];
+                return _model[3, 8];
             }
         }
 
@@ -733,7 +744,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[4, 8];
+                return _model[4, 8];
             }
         }
 
@@ -741,7 +752,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[5, 8];
+                return _model[5, 8];
             }
         }
 
@@ -749,7 +760,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[6, 8];
+                return _model[6, 8];
             }
         }
 
@@ -757,7 +768,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[7, 8];
+                return _model[7, 8];
             }
         }
 
@@ -765,7 +776,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return _cells[8, 8];
+                return _model[8, 8];
             }
         }
 
