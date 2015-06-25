@@ -16,14 +16,18 @@ namespace Sudoku.ViewModel
 
             if (val != null)
             {
-                //if (val.UserAnswer == 0)
-                //{
-                //    return " ";
-                //}
-                //else
-                //{
-                    return val.UserAnswer.ToString();
-                //}     
+                switch(val.CellState)
+                {
+                    case CellStateEnum.Blank:
+                        return " ";
+                    case CellStateEnum.UserInputCorrect:
+                    case CellStateEnum.UserInputIncorrect:
+                        return val.UserAnswer.ToString();
+                    case CellStateEnum.Answer:
+                        return val.Answer.ToString();
+                    default:
+                        return "0";
+                }
             }
             else
             {

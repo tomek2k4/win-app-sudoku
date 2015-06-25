@@ -28,6 +28,14 @@ namespace Sudoku.Model
 
         #region . Constructors .
 
+        internal CellClass(Int32 index)
+        {
+            InitCell();                         // Initialize the variables of this instance.
+            CellIndex = new CellIndex(index);           // Instantiate a new CellIndex class and save it.
+        }
+
+
+
         /// <summary>
         /// Initializes a new instance of the CellClass.
         /// </summary>
