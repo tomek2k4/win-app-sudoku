@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Runtime.Serialization;
 
 using Sudoku.Model;
+using Sudoku.ViewModel.GameGenerator;
 
 namespace Sudoku.ViewModel
 {
@@ -18,17 +19,36 @@ namespace Sudoku.ViewModel
     {
         private GameModel _model;
         private RelayCommand[,] _komendy = new RelayCommand[9, 9];
+        private GamesManager _games;
+
+        private DifficultyLevels _gameLevel = DifficultyLevels.Easy;
+
+        private bool GameInProgress { get; set; }
+        private bool PuzzleComplete { get; set; }
+
+
         #region . Constructors .
 
         public ViewModelClass()
         {
             Debug.WriteLine("Initialize View Model ...");
             
-            CellClass[,] cells = GenerateNewBoard();
-            cells[0, 0].CellState = CellStateEnum.Answer;
-            cells[0, 0].Answer = 5;
+            //CellClass[,] cells = GenerateNewBoard();
+            //cells[0, 0].CellState = CellStateEnum.Answer;
+            //cells[0, 0].Answer = 5;
 
-            _model = new GameModel(cells);
+            _games = new GamesManager();                            // Instantiate a new game manager class
+            _games.GamesManagerEvent += GamesManagerEventHandler;   // Set the event handler
+
+            GetNewGame(); //Initialize model
+            PuzzleComplete = false;                                 // Clear some flags
+            GameInProgress = false;
+            if(_model == null)
+            {
+                _model = new GameModel(null);                           // Initialize the model with null
+            }
+            
+            LoadSettings();                                         // Load settings
             for (int i = 0; i < 9; ++i)
             {
                 for (int j = 0; j < 9; ++j)
@@ -56,6 +76,47 @@ namespace Sudoku.ViewModel
         }
 
 
+        private void LoadSettings()
+        {
+            GameLevel = ConvertGameLevel(0);    // Load game level from settings
+            // TODO: Load previous game if any.
+            // If there was a previous game saved, then ask player
+            // if they want to play old game or load a new game.
+        }
+
+        private static DifficultyLevels ConvertGameLevel(Int32 value)
+        {
+            return DifficultyLevels.VeryEasy;                           // No, default to Very Easy level
+        }
+
+
+
+        private void GetNewGame()
+        {
+            if (_games.GameCount(GameLevel) > 0)                    // Are there games available? 
+            {
+                _model = new GameModel(_games.GetGame(GameLevel));  // Yes, load a game in the model class
+            }
+        }
+
+
+        /// <summary>
+        /// Gets or sets the Game Level.
+        /// </summary>
+        public DifficultyLevels GameLevel
+        {
+            get
+            {
+                return _gameLevel;
+            }
+            set
+            {
+                bool bLoadNewGame = (_gameLevel != value);                      // Save whether the value changed or not
+                _gameLevel = value;                                             // Save the value to our local variable                                         // Raise the property changed flag
+            }
+        }
+
+
         private void IncrementUserAnswer(Int32 col, Int32 row)
         {
             if(_model[col,row].UserAnswer == 9)
@@ -77,34 +138,145 @@ namespace Sudoku.ViewModel
             }
         }
 
-
-
-        private CellClass[,] GenerateNewBoard()
+        private void GamesManagerEventHandler(object sender, GameManagerEventArgs e)
         {
-            CellClass[] cellsList = new CellClass[81];
-            for (Int32 i = 0; i < 81; i++)                          // Loop through the array
-                cellsList[i] = null;
-
-
-            Int32 index = 0;
-            do
+            switch (e.Level)                                    // Which level raised the event
             {
-                CellClass item = new CellClass(index); // Create a new element with answer 1
-                //item.UserAnswer = item.Region + 1;
-                cellsList[index] = item;
-                index++;
-            } while (index < 81);
+                case DifficultyLevels.VeryEasy:                 // Very Easy level raised event
+                    GameCountVeryEasy = e.Count.ToString();     // Save the count to the Very Easy level property
+                    break;
 
-            return TransferGameToGrid(cellsList);
+                case DifficultyLevels.Easy:                     // Easy level raised the event
+                    GameCountEasy = e.Count.ToString();         // Save the count to the Easy level property
+                    break;
+
+                case DifficultyLevels.Medium:                   // Medium level raised the event
+                    GameCountMedium = e.Count.ToString();       // Save the count to the Medium level property
+                    break;
+
+                case DifficultyLevels.Hard:                     // Hard level raised the event
+                    GameCountHard = e.Count.ToString();         // Save the count to the Hard level property
+                    break;
+
+                case DifficultyLevels.Expert:                   // Expert level raised the event
+                    GameCountExpert = e.Count.ToString();       // Save the count to the Expert level property
+                    break;
+            }
         }
 
-        private CellClass[,] TransferGameToGrid(CellClass[] cellsList)
+
+
+
+        /// <summary>
+        /// Gets the game count for the Very Easy level.
+        /// </summary>
+        public string GameCountVeryEasy
         {
-            CellClass[,] cellsArray = new CellClass[9, 9];                           // Initialize a new cell array
-            foreach (CellClass item in cellsList)                                  // Loop the cell list
-                cellsArray[item.Col, item.Row] = item;                               // Save the pointer
-            return cellsArray;                                                       // Return the cell array
+            get
+            {
+                return GetGameCount(DifficultyLevels.VeryEasy);
+            }
+            private set
+            {
+                //FirePropertyChanged("");
+            }
         }
+
+        /// <summary>
+        /// Gets the game count for the Easy level.
+        /// </summary>
+        public string GameCountEasy
+        {
+            get
+            {
+                return GetGameCount(DifficultyLevels.Easy);
+            }
+            private set
+            {
+                //FirePropertyChanged("");
+            }
+        }
+
+        /// <summary>
+        /// Gets the game count for the Medium level.
+        /// </summary>
+        public string GameCountMedium
+        {
+            get
+            {
+                return GetGameCount(DifficultyLevels.Medium);
+            }
+            private set
+            {
+                //FirePropertyChanged("");
+            }
+        }
+
+        /// <summary>
+        /// Gets the game count for the Hard level.
+        /// </summary>
+        public string GameCountHard
+        {
+            get
+            {
+                return GetGameCount(DifficultyLevels.Hard);
+            }
+            private set
+            {
+                //FirePropertyChanged("");
+            }
+        }
+
+        /// <summary>
+        /// Gets the game count for the Expert level.
+        /// </summary>
+        public string GameCountExpert
+        {
+            get
+            {
+                return GetGameCount(DifficultyLevels.Expert);
+            }
+            private set
+            {
+                //FirePropertyChanged("");
+            }
+        }
+
+
+        private string GetGameCount(DifficultyLevels level)
+        {
+            if (_games == null)                                         // Game manager class instantiated?
+                return "0";                                             // No, then just return zero
+            return _games.GameCount(level).ToString();                  // Yes, then return the actual game count
+        }
+
+
+        //private CellClass[,] GenerateNewBoard()
+        //{
+        //    CellClass[] cellsList = new CellClass[81];
+        //    for (Int32 i = 0; i < 81; i++)                          // Loop through the array
+        //        cellsList[i] = null;
+
+
+        //    Int32 index = 0;
+        //    do
+        //    {
+        //        CellClass item = new CellClass(index); // Create a new element with answer 1
+        //        //item.UserAnswer = item.Region + 1;
+        //        cellsList[index] = item;
+        //        index++;
+        //    } while (index < 81);
+
+        //    return TransferGameToGrid(cellsList);
+        //}
+
+        //private CellClass[,] TransferGameToGrid(CellClass[] cellsList)
+        //{
+        //    CellClass[,] cellsArray = new CellClass[9, 9];                           // Initialize a new cell array
+        //    foreach (CellClass item in cellsList)                                  // Loop the cell list
+        //        cellsArray[item.Col, item.Row] = item;                               // Save the pointer
+        //    return cellsArray;                                                       // Return the cell array
+        //}
 
         #region . Properties: Cell Contents .
 
