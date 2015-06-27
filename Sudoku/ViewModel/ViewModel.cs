@@ -57,7 +57,7 @@ namespace Sudoku.ViewModel
                     var row = i;
                     _komendy[j,i] = new RelayCommand(
                         () => { ProcessCellClick(col, row); FirePropertyChanged("Cell" + col.ToString() + row.ToString()); },
-                        () => { return _model[col, row].Answer == 0; }
+                        () => { return _model[col, row].CellState != CellStateEnum.Answer; }
                         );
                 }
             }
