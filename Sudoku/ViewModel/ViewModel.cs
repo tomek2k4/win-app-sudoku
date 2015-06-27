@@ -40,6 +40,8 @@ namespace Sudoku.ViewModel
             _games = new GamesManager();                            // Instantiate a new game manager class
             _games.GamesManagerEvent += GamesManagerEventHandler;   // Set the event handler
 
+            LoadSettings();                                         // Load settings
+
             GetNewGame(); //Initialize model
             PuzzleComplete = false;                                 // Clear some flags
             GameInProgress = false;
@@ -48,7 +50,7 @@ namespace Sudoku.ViewModel
                 _model = new GameModel(null);                           // Initialize the model with null
             }
             
-            LoadSettings();                                         // Load settings
+
             for (int i = 0; i < 9; ++i)
             {
                 for (int j = 0; j < 9; ++j)
@@ -78,7 +80,7 @@ namespace Sudoku.ViewModel
 
         private void LoadSettings()
         {
-            GameLevel = ConvertGameLevel(0);    // Load game level from settings
+            GameLevel = ConvertGameLevel(4);    // Load game level from settings
             // TODO: Load previous game if any.
             // If there was a previous game saved, then ask player
             // if they want to play old game or load a new game.
@@ -86,7 +88,17 @@ namespace Sudoku.ViewModel
 
         private static DifficultyLevels ConvertGameLevel(Int32 value)
         {
-            return DifficultyLevels.VeryEasy;                           // No, default to Very Easy level
+            try
+            {
+                if (Enum.IsDefined(typeof(DifficultyLevels), value))    // Is the value part of the enum?
+                    return (DifficultyLevels)value;                     // Yes, return the value
+            }
+            catch (Exception)
+            {
+                // TODO: What to do here?
+                // Maybe log error to Application.Event log?
+            }
+            return DifficultyLevels.VeryEasy;  
         }
 
 
