@@ -33,10 +33,6 @@ namespace Sudoku.ViewModel
         {
             Debug.WriteLine("Initialize View Model ...");
             
-            //CellClass[,] cells = GenerateNewBoard();
-            //cells[0, 0].CellState = CellStateEnum.Answer;
-            //cells[0, 0].Answer = 5;
-
             _games = new GamesManager();                            // Instantiate a new game manager class
             _games.GamesManagerEvent += GamesManagerEventHandler;   // Set the event handler
 
@@ -80,7 +76,7 @@ namespace Sudoku.ViewModel
 
         private void LoadSettings()
         {
-            GameLevel = ConvertGameLevel(4);    // Load game level from settings
+            GameLevel = ConvertGameLevel(0);    // Load game level from settings
             // TODO: Load previous game if any.
             // If there was a previous game saved, then ask player
             // if they want to play old game or load a new game.
@@ -137,6 +133,11 @@ namespace Sudoku.ViewModel
                 {
                     _model[col, row].CellState = CellStateEnum.UserInputIncorrect;
                     _model[col, row].UserAnswer = 1;
+                    if (_model[col, row].UserAnswer == _model[col, row].Answer)
+                    {
+                        _model[col, row].CellState = CellStateEnum.UserInputCorrect;
+                    }
+
                 }
                 else
                 {
@@ -147,6 +148,12 @@ namespace Sudoku.ViewModel
             {
                 _model[col, row].CellState = CellStateEnum.UserInputIncorrect;
                 _model[col, row].UserAnswer++;
+
+                if(_model[col, row].UserAnswer ==  _model[col, row].Answer)
+                {
+                    _model[col, row].CellState = CellStateEnum.UserInputCorrect;
+                }
+
             }
         }
 

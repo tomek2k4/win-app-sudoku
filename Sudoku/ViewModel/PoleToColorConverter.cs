@@ -22,6 +22,7 @@ namespace Sudoku.ViewModel
                     case CellStateEnum.Blank:
                         return "Black";
                     case CellStateEnum.UserInputCorrect:
+                        return "Green";
                     case CellStateEnum.UserInputIncorrect:
                         return "Black";
                     case CellStateEnum.Answer:
