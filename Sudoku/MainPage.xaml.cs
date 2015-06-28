@@ -32,13 +32,17 @@ namespace Sudoku
     public sealed partial class MainPage : Page
     {
 
-        private ViewModelClass _viewModel = new ViewModelClass();
+     
 
         public MainPage()
         {
-            this.DataContext = _viewModel;
+            ViewModelClass viewModelClass = new ViewModelClass();
+            ((App)Application.Current).ViewModel = viewModelClass;
+
+            this.DataContext = viewModelClass;
             this.InitializeComponent();
         }
+
 
     }
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sudoku.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -28,11 +29,18 @@ namespace Sudoku
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
         /// </summary>
+        /// 
+        private ViewModelClass _viewModel = new ViewModelClass();
+
         public App()
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
         }
+
+        public ViewModelClass ViewModel { get; set; }
+
+
 
         /// <summary>
         /// Invoked when the application is launched normally by the end user.  Other entry points
@@ -104,6 +112,10 @@ namespace Sudoku
             var deferral = e.SuspendingOperation.GetDeferral();
             //TODO: Save application state and stop any background activity
             deferral.Complete();
+
+            _viewModel.StopGame();
+
+            
         }
     }
 }

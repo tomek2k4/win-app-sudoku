@@ -55,7 +55,7 @@ namespace Sudoku.ViewModel
                     var row = i;
                     _komendy[j,i] = new RelayCommand(
                         () => { ProcessCellClick(col, row); FirePropertyChanged("Cell" + col.ToString() + row.ToString()); },
-                        () => { return _model[col, row].CellState != CellStateEnum.Answer; }
+                        () => { return true; }
                         );
                 }
             }
@@ -107,6 +107,11 @@ namespace Sudoku.ViewModel
             }
         }
 
+
+        public void StopGame()
+        {
+            _games.StopGamesManager();                              // Stop the game manager background tasks                                         // Save the settings to the config file
+        }
 
         /// <summary>
         /// Gets or sets the Game Level.

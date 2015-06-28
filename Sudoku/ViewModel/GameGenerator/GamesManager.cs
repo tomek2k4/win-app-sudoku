@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Windows.Storage;
 
 namespace Sudoku.ViewModel.GameGenerator
 {
@@ -107,8 +108,31 @@ namespace Sudoku.ViewModel.GameGenerator
             return collection;                                          // Return the pointer
         }
 
-        private void LoadGames()
+        private async void LoadGames()
         {
+            try
+            {
+                String veryEasy;
+
+                // Create sample file; replace if exists.
+                StorageFolder folder =
+                    Windows.Storage.ApplicationData.Current.LocalFolder;
+                StorageFile sampleFile =
+                    await folder.GetFileAsync("very_easy.txt");
+
+                veryEasy = await Windows.Storage.FileIO.ReadTextAsync(sampleFile);
+
+                if (!veryEasy.Equals(""))
+                {
+                    _veryEasy = veryEasy;
+                }
+
+            }
+            catch (Exception e)
+            {
+
+            }
+
             _games[0].LoadGames(_veryEasy);       // Load games from the config file
             _games[1].LoadGames(_easy);
             _games[2].LoadGames(_medium);
@@ -128,13 +152,25 @@ namespace Sudoku.ViewModel.GameGenerator
                 item.StopThread();                                      // Stop each background thread
         }
 
-        private void SaveGames()
+        private async void SaveGames()
         {
+
             _veryEasy = _games[0].SaveGames();    // Save the games to the application config file
             _easy = _games[1].SaveGames();
             _medium = _games[2].SaveGames();
             _hard = _games[3].SaveGames();
             _expert = _games[4].SaveGames();                                // Now save it to disk
+
+
+            // Create sample file; replace if exists.
+            StorageFolder folder =
+                Windows.Storage.ApplicationData.Current.LocalFolder;
+            StorageFile sampleFile =
+                await folder.CreateFileAsync("very_easy.txt", CreationCollisionOption.ReplaceExisting);
+
+            await FileIO.WriteTextAsync(sampleFile, _veryEasy);
+
+
         }
 
         private void RaiseEvent(GameManagerEventArgs e)
